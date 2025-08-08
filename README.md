@@ -1,4 +1,4 @@
-<html lang="en">
+
 
 <head>
     <meta charset="UTF-8">
@@ -225,7 +225,7 @@
         .btn-secondary:hover {
             border-color: var(--primary-color);
             color: var(--primary-color);
-            transform: translateY(-2px);
+            transform: translateY(-5px);
         }
 
         .btn-success {
@@ -398,13 +398,11 @@
                 font-size: 1rem;
             }
 
-            /* Ne garder que 2-3 boutons essentiels */
             .entete-actions .btn:not(.btn-menu):nth-child(n+3) {
                 display: none;
             }
         }
 
-        /* Menu mobile (quand activé) */
         .mobile-menu {
             display: none;
             position: fixed;
@@ -450,7 +448,6 @@
             }
         }
 
-        /* Optimisations tactiles */
         @media (hover: none) and (pointer: coarse) {
             .btn:hover {
                 transform: none;
@@ -465,7 +462,6 @@
             }
         }
 
-        /* Mode paysage mobile */
         @media (max-height: 500px) and (orientation: landscape) {
             .entete-content {
                 padding: 0.5rem 0;
@@ -480,7 +476,6 @@
             }
         }
 
-        /* Support pour les écrans haute densité */
         @media (-webkit-min-device-pixel-ratio: 2),
         (min-resolution: 192dpi) {
             .entete {
@@ -515,8 +510,8 @@
         }
 
         .btn-menu {
-            width: 40px;
-            height: 40px;
+            width: 20px;
+            height: 70px;
             padding: 0;
             border-radius: 50%;
             background: linear-gradient(135deg, var(--primary-color), var(--primary-light));
@@ -825,7 +820,6 @@
             margin: 0 auto;
         }
 
-        /* Grid responsive pour les annonces */
         .annonces-grid {
             display: grid;
             grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
@@ -878,15 +872,12 @@
             overflow-wrap: break-word;
         }
 
-        /* Prix responsive */
         .annonce-price {
             font-size: clamp(1.25rem, 3vw, 1.5rem);
             font-weight: 800;
             color: var(--primary-color);
             margin-bottom: 1rem;
         }
-
-        /* Détails en grid responsive */
         .annonce-details {
             display: grid;
             gap: 0.5rem;
@@ -909,7 +900,6 @@
             flex-shrink: 0;
         }
 
-        /* Description responsive */
         .annonce-description {
             color: var(--text-secondary);
             font-size: 0.875rem;
@@ -920,7 +910,6 @@
             flex-grow: 1;
         }
 
-        /* Actions responsive */
         .annonce-actions {
             display: flex;
             gap: 0.75rem;
@@ -941,13 +930,9 @@
             justify-content: center;
             gap: 0.5rem;
             min-height: 44px;
-            /* Taille minimum tactile */
         }
 
-        /* Responsive Breakpoints */
-
-        /* Tablettes (768px et moins) */
-        @media (max-width: 768px) {
+                @media (max-width: 768px) {
             .annonces-grid {
                 grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
                 gap: 1.25rem;
@@ -963,7 +948,6 @@
             }
         }
 
-        /* Mobiles (480px et moins) */
         @media (max-width: 480px) {
             .annonces-grid {
                 grid-template-columns: 1fr;
@@ -1025,7 +1009,6 @@
             }
         }
 
-        /* Très petits écrans (360px et moins) */
         @media (max-width: 360px) {
             .annonces-grid {
                 padding: 0.75rem 0.25rem;
@@ -1062,7 +1045,6 @@
             }
         }
 
-        /* Améliorations pour l'accessibilité tactile */
         @media (hover: none) and (pointer: coarse) {
             .annonce-card:hover {
                 transform: none;
@@ -1074,18 +1056,15 @@
 
             .annonce-actions .btn {
                 min-height: 48px;
-                /* Taille recommandée pour le tactile */
             }
         }
 
-        /* Mode sombre responsive */
         @media (prefers-color-scheme: dark) {
             .annonce-image {
                 background: linear-gradient(135deg, #374151, #1f2937);
             }
         }
 
-        /* Optimisation pour les écrans haute densité */
         @media (-webkit-min-device-pixel-ratio: 2),
         (min-resolution: 192dpi) {
             .annonce-card {
@@ -1362,7 +1341,6 @@
             margin-bottom: 1rem;
         }
 
-        /* Animation d'apparition des cartes */
         @keyframes slideInUp {
             from {
                 opacity: 0;
@@ -1383,7 +1361,6 @@
             overflow: hidden;
         }
 
-        /* En-tête de l'avis */
         .avis-header {
             display: flex;
             justify-content: space-between;
@@ -1938,7 +1915,6 @@
                 padding: 0.5rem 0 !important;
             }
 
-            /* Haut : boutons actions */
             .entete-actions {
                 display: flex !important;
                 flex-direction: row !important;
@@ -1965,8 +1941,7 @@
                 border-radius: 18px !important;
             }
 
-            /* Bas : menu boutons */
-            .menu {
+            /* .menu {
                 flex-direction: row !important;
                 gap: 1.2rem !important;
                 padding: 1.2rem 0.5rem !important;
@@ -1977,16 +1952,15 @@
                 width: 100vw !important;
                 z-index: 9999 !important;
                 box-shadow: 0 -4px 12px rgba(0, 0, 0, 0.08) !important;
-            }
+            } */
 
             .menu .btn {
                 flex: 1 1 0 !important;
                 min-width: 90px !important;
-                font-size: 1.15em !important;
+                font-size: 1em !important;
                 padding: 1em 0.5em !important;
                 margin: 0 0.3em !important;
-                border-radius: 18px !important;
-                box-shadow: 0 2px 8px rgba(0, 0, 0, 0.07) !important;
+                border-radius: 28px !important;
             }
 
             .menu button {
@@ -2158,7 +2132,6 @@
                 box-sizing: border-box !important;
             }
 
-            /* Boutons principaux scrollables horizontalement sauf le bouton jour/nuit */
             .entete-actions {
                 display: flex !important;
                 flex-direction: row !important;
@@ -2182,7 +2155,6 @@
                 margin-bottom: 0 !important;
             }
 
-            /* Le bouton jour/nuit (indicateur) est placé juste à côté du logo sur mobile */
             .entete-logo {
                 display: flex !important;
                 flex-direction: row !important;
@@ -2200,22 +2172,19 @@
             }
         }
 
-        /* Menu mobile moderne du bas */
         .menu {
             position: fixed;
             bottom: 0;
             left: 0;
             right: 0;
+            width: 100%;
+            height:70px;
             background: rgba(255, 255, 255, 0.95);
-            backdrop-filter: blur(10px);
-            border-top: 1px solid var(--border-color);
             padding: 0.75rem;
             display: flex;
             justify-content: space-around;
             box-shadow: 0 -4px 6px -1px rgba(0, 0, 0, 0.1);
-            z-index: 999;
         }
-
         .menu-item {
             display: flex;
             flex-direction: column;
@@ -2319,7 +2288,6 @@
             top: 200px;
         }
 
-        /* Ajustement pour l'espace du menu mobile */
         body {
             padding-bottom: 5rem;
         }
@@ -2378,8 +2346,15 @@
         }
 
         #question {
-            padding: 15px;
-            width: 120px;
+            padding: 20px;
+            width: 100px;
+            font-size: 30px;
+            background-color: #4b5563 ;
+            color: white;
+        }
+        #question:hover {
+            background-color:white;
+            color: rgba(0, 0, 0, 0.521);
         }
     </style>
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
@@ -2398,7 +2373,7 @@
                             style="font-size:1.7rem;min-width:44px;min-height:44px;padding:0 10px;line-height:1;">
                             ☰
                         </button>
-                        <strong class="fs-5 ms-1 ms-md-2">MBOA Librairie</strong>
+                        <strong style="font-size: 30px; padding: 20px;" class="fs-5 ms-1 ms-md-2"><i class="fas fa-book" ></i> MBOA Librairie</strong>
                     </div>
                     <div class="col-12 col-md-5 mt-2 mt-md-0 entete-search">
                         <div class="input-group">
@@ -2414,7 +2389,7 @@
                         <button class="btn btn-primary me-2 mb-1 mb-md-0" id="vendre"><i class="fas fa-plus"></i> Vendre</button>
                         <button class="btn btn-success me-2 mb-1 mb-md-0" id="connexionn"><i
                         class="fas fa-sign-in-alt"></i> Connexion</button>
-                        <a href="https://wa.me/237657300644" class="btn btn-secondary" id="question">❓ Question</a>
+                        <a href="https://wa.me/237657300644" class="btn btn-secondary" id="question"><i class="fas fa-question"></i> Question</a>
                     </div>
                 </div>
             </div>
@@ -2541,7 +2516,7 @@
                 color: rgba(37, 37, 180, 0.589);
                 background-color:rgba(0, 0, 255, 0.123)
             }
-        </style>
+        </style>                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                               
         <div class="fournitures" id="fourniture" style="display: none;">
             <p class="listes">❤️ Mes listes</p>
             <br>
@@ -2629,7 +2604,7 @@
                 </div>
             </div>
         </div>
-        <button class="btn btn-secondary" id="temps">🌞</button>
+        <button class="btn btn-secondary" id="temps"> <i class="fas fa-moon"></i></button>
         <div id="conteneuravis" style="display: none;"></div>
 
         <div class="avise" id="avise" style="display: none;">
@@ -2743,12 +2718,12 @@
         <button class="btn btn-secondary" id="accueilBtn">
             <i class="fas fa-home"></i> Accueil
         </button>
-        <button class="btn btn-secondary" id="avis">🌟 Avis</button>
+        <button class="btn btn-secondary" id="avis"><i class="fas fa-star"></i> Avis</button>
         <button onclick="lireConversations()" class="btn btn-secondary" id="mess" aria-label="Voir mes conversations">
             <i class="fas fa-comments"></i> Messages
         </button>
-        <button onclick="lireConversations()" class="btn btn-secondary" id="profils">
-            <i class="fas fa-comments"></i> Profil
+        <button class="btn btn-secondary" id="profils">
+            <i class="fas fa-user"></i> Profil
         </button>
         <button class="btn btn-success" id="payer" style="display:none;">Payer 200 FCFA</button>
     </div>
