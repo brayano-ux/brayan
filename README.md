@@ -1,4 +1,4 @@
-
+<html lang="en">
 
 <head>
     <meta charset="UTF-8">
@@ -55,27 +55,22 @@
             overflow-x: hidden;
         }
 
-        /* Container responsive */
         .container {
             max-width: var(--container-max-width, 1200px);
             margin: 0 auto;
             padding: 0 1rem;
             width: 100%;
-        }
-
-        /* En-tête principal */
-        .entete {
+        }       
+         .entete{
             background: var(--surface-color);
             border-bottom: 1px solid var(--border-color);
             box-shadow: var(--shadow-sm);
-            position: sticky;
+            padding: 15px;
             top: 0;
             z-index: 1000;
             transition: var(--transition);
             width: 100%;
         }
-
-        /* Contenu de l'en-tête */
         .entete-content {
             display: flex;
             align-items: center;
@@ -84,8 +79,6 @@
             gap: 1rem;
             flex-wrap: nowrap;
         }
-
-        /* Logo et menu burger */
         .entete-logo {
             display: flex;
             align-items: center;
@@ -104,8 +97,6 @@
             letter-spacing: -0.025em;
             white-space: nowrap;
         }
-
-        /* Bouton menu burger (caché par défaut) */
         .btn-menu {
             display: none;
             background: var(--surface-color);
@@ -225,7 +216,7 @@
         .btn-secondary:hover {
             border-color: var(--primary-color);
             color: var(--primary-color);
-            transform: translateY(-5px);
+            transform: translateY(-2px);
         }
 
         .btn-success {
@@ -239,9 +230,6 @@
             box-shadow: var(--shadow-lg);
         }
 
-        /* Responsive Design */
-
-        /* Tablettes grandes (1024px et moins) */
         @media (max-width: 1024px) {
             .container {
                 padding: 0 0.75rem;
@@ -249,6 +237,8 @@
 
             .entete-content {
                 gap: 0.75rem;
+            } .trois{
+                width: 50px;
             }
 
             .entete-search {
@@ -264,18 +254,19 @@
                 font-size: 0.8rem;
             }
 
-            /* Cacher certains textes des boutons */
             .btn span:not(.emoji) {
                 display: none;
             }
         }
 
-        /* Tablettes (768px et moins) */
         @media (max-width: 768px) {
             .container {
                 padding: 0 0.5rem;
             }
-
+.entete{
+    padding: 5px;
+    height: 200px;
+}
             .entete-content {
                 padding: 0.75rem 0;
                 gap: 0.5rem;
@@ -299,7 +290,9 @@
                 gap: 0.25rem;
                 flex-wrap: wrap;
             }
-
+ .trois{
+                width: 50px;
+            }
             .btn {
                 padding: 0.5rem 0.75rem;
                 font-size: 0.75rem;
@@ -368,14 +361,14 @@
                 height: 40px;
                 font-size: 1.1rem;
             }
-
-            /* Ne garder que les boutons essentiels */
+ .trois{
+                width: 50px;
+            }
             .entete-actions .btn:not(.btn-menu):nth-child(n+4) {
                 display: none;
             }
         }
 
-        /* Très petits écrans (360px et moins) */
         @media (max-width: 360px) {
             .entete-logo strong {
                 font-size: 1.1rem;
@@ -391,7 +384,9 @@
                 font-size: 0.65rem;
                 min-height: 36px;
             }
-
+ .trois{
+                width: 50px;
+            }
             .btn-menu {
                 width: 36px;
                 height: 36px;
@@ -470,7 +465,9 @@
             .entete-search {
                 margin-top: 0;
             }
-
+ .trois{
+                width: 50px;
+            }
             .mobile-menu {
                 max-height: calc(100vh - 60px);
             }
@@ -486,7 +483,9 @@
                 border-width: 1px;
             }
         }
-
+ .trois{
+                width: 50px;
+            }
         .btn-success {
             background: linear-gradient(135deg, var(--secondary-color), var(--secondary-light));
             color: white;
@@ -537,7 +536,9 @@
                 font-size: 1rem;
             }
         }
-
+ .trois{
+                width: 50px;
+            }
         .tous {
             background: linear-gradient(135deg, var(--secondary-color), var(--secondary-light));
             color: white;
@@ -708,6 +709,7 @@
             margin: 2rem auto;
             max-width: 600px;
             border: 1px solid var(--border-color);
+            position: relative;
         }
 
         .form-title {
@@ -785,6 +787,9 @@
             .form-container {
                 margin: 1rem;
                 padding: 1.5rem;
+            }
+            .trois{
+                width: 50px;
             }
 
             .form-actions {
@@ -878,6 +883,7 @@
             color: var(--primary-color);
             margin-bottom: 1rem;
         }
+
         .annonce-details {
             display: grid;
             gap: 0.5rem;
@@ -932,7 +938,7 @@
             min-height: 44px;
         }
 
-                @media (max-width: 768px) {
+        @media (max-width: 768px) {
             .annonces-grid {
                 grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
                 gap: 1.25rem;
@@ -948,7 +954,7 @@
             }
         }
 
-        @media (max-width: 480px) {
+        @media (max-width: 450px) {
             .annonces-grid {
                 grid-template-columns: 1fr;
                 gap: 1rem;
@@ -966,7 +972,7 @@
             }
 
             .annonce-image {
-                height: 160px;
+                height: 200px;
             }
 
             .annonce-title {
@@ -1088,13 +1094,24 @@
         #connexion {
             background: rgba(255, 255, 255, 0.95);
             backdrop-filter: blur(20px);
-            padding: 40px;
+            padding: 20px;
             margin: 50px auto;
             border-radius: 20px;
-            max-width: 500px;
+            max-width: 400px;
             box-shadow: var(--shadow-lg);
             text-align: center;
             border: 1px solid rgba(255, 255, 255, 0.2);
+        }
+
+        label {
+            font-size: 20px;
+            font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen,
+                Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+            position: relative;
+            display: block;
+            left: 0px;
+            text-align: left;
+            margin-bottom: 10px;
         }
 
         #connexion input {
@@ -1289,17 +1306,31 @@
             transform: scale(1.1);
         }
 
-        .chat-messages {
-            flex: 1;
-            padding: 1.5rem;
-            overflow-y: auto;
-            background: #f8fafc;
-            display: flex;
-            flex-direction: column;
-            gap: 1rem;
-        }
+       .chat-messages {
+    flex: 1;
+    margin: 10px;
+    padding: 1.5rem;
+    overflow-y: auto;
+    background: lavender;
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+    max-height: calc(100vh - 120px); 
+    border-radius: var(--border-radius-lg);
+}
+
+.chat-messages::-webkit-scrollbar {
+    width: 6px;
+}
+
+.chat-messages::-webkit-scrollbar-thumb {
+    background-color: rgba(0, 0, 0, 0.2);
+    border-radius: 4px;
+}
+
 
         .message {
+            margin: 10px;
             max-width: 70%;
             padding: 0.75rem 1rem;
             border-radius: var(--border-radius-lg);
@@ -1320,26 +1351,32 @@
             color: var(--text-primary);
             border: 1px solid var(--border-color);
         }
-
         .message-author {
             font-size: 0.75rem;
             font-weight: 600;
             margin-bottom: 0.25rem;
             opacity: 0.8;
         }
+.chat-input-container {
+    position: fixed;
+    bottom: 0; 
+    width: 100%;
+    padding: 1rem 1.5rem;
+    border-top: 1px solid var(--border-color);
+    background: var(--surface-color);
+    border-radius: var(--border-radius-lg) var(--border-radius-lg) 0 0;
+    box-shadow: 0 -2px 8px rgba(0, 0, 0, 0.05);
+    z-index: 1000; 
+}
 
-        .chat-input-container {
-            padding: 1.5rem;
-            border-top: 1px solid var(--border-color);
-            background: var(--surface-color);
-            border-radius: 0 0 var(--border-radius-lg) var(--border-radius-lg);
-        }
+.chat-input-group {
+    display: flex; 
+    justify-content: space-between;
+    align-items: center;
+    gap: 0.75rem;
+    margin-bottom: 0.5rem;
+}
 
-        .chat-input-group {
-            display: flex;
-            gap: 0.75rem;
-            margin-bottom: 1rem;
-        }
 
         @keyframes slideInUp {
             from {
@@ -1550,30 +1587,61 @@
             }
         }
 
-        .chat-input {
-            flex: 1;
-            height: 48px;
-            padding: 0 1rem;
-            border: 2px solid var(--border-color);
-            border-radius: var(--border-radius-xl);
-            font-size: 1rem;
-            transition: var(--transition);
-        }
+       .chat-input {
+    flex: 1;
+    height: 48px;
+    padding: 0 1rem;
+    border: 2px solid var(--border-color);
+    border-radius: var(--border-radius-xl);
+    font-size: 1rem;
+    background-color: var(--input-bg, #fff);
+    color: var(--text-color, #333);
+    transition: border-color 0.25s ease, box-shadow 0.25s ease, background-color 0.3s ease;
+}
 
-        .chat-input:focus {
-            outline: none;
-            border-color: var(--primary-color);
-            box-shadow: 0 0 0 3px rgba(99, 102, 241, 0.1);
-        }
+.chat-input:focus {
+    outline: none;
+    border-color: var(--primary-color);
+    background-color: var(--input-focus-bg, #fff);
+    box-shadow: 0 0 8px rgba(99, 102, 241, 0.2);
+}
 
-        .chat-actions {
-            display: flex;
-            gap: 0.75rem;
-        }
+.chat-input::placeholder {
+    color: var(--placeholder-color, #999);
+    opacity: 0.8;
+    transition: opacity 0.25s ease;
+}
 
-        .chat-actions .btn {
-            flex: 1;
-        }
+.chat-input:focus::placeholder {
+    opacity: 0.5;
+}
+
+.chat-actions {
+    display: flex;
+    gap: 0.75rem;
+    align-items: center;
+}
+
+.chat-actions .btn {
+    flex: 1;
+    padding: 0.6rem 1rem;
+    border-radius: var(--border-radius-lg);
+    border: none;
+    background: var(--primary-color);
+    color: #fff;
+    font-weight: 500;
+    cursor: pointer;
+    transition: background-color 0.25s ease, transform 0.2s ease;
+}
+
+.chat-actions .btn:hover {
+    background-color: var(--primary-hover-color);
+    transform: translateY(-1px);
+}
+
+.chat-actions .btn:active {
+    transform: translateY(1px);
+}
 
         @media (max-width: 768px) {
             .chat-container {
@@ -1672,7 +1740,7 @@
             .entete {
                 flex-direction: column;
                 gap: 20px;
-                padding: 20px;
+                padding: 10px;
             }
 
             .entete input {
@@ -1703,8 +1771,8 @@
 
             .trois {
                 font-size: 1.5rem;
-                width: 45px;
-                height: 45px;
+                width: 25px;
+                height: 25px;
             }
         }
 
@@ -2002,6 +2070,7 @@
             }
 
             .chat-messages {
+                margin-bottom: 10px;
                 padding: 0.5rem !important;
                 font-size: 0.95rem !important;
             }
@@ -2178,13 +2247,13 @@
             left: 0;
             right: 0;
             width: 100%;
-            height:70px;
+            height: 70px;
             background: rgba(255, 255, 255, 0.95);
-            padding: 0.75rem;
             display: flex;
             justify-content: space-around;
             box-shadow: 0 -4px 6px -1px rgba(0, 0, 0, 0.1);
         }
+
         .menu-item {
             display: flex;
             flex-direction: column;
@@ -2349,12 +2418,18 @@
             padding: 20px;
             width: 100px;
             font-size: 30px;
-            background-color: #4b5563 ;
+            background-color: #4b5563;
             color: white;
         }
+
         #question:hover {
-            background-color:white;
+            background-color: white;
             color: rgba(0, 0, 0, 0.521);
+        }
+
+        #entete {
+            width: 100%;
+          
         }
     </style>
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
@@ -2363,17 +2438,17 @@
 </head>
 
 <body id="bod" data-aos="fade-down-right">
-
     <div id="ladiv">
         <div class="entete" id="entete">
             <div class="container-fluid px-2 py-2">
                 <div class="row align-items-center justify-content-between entete-content flex-wrap">
                     <div class="col-6 col-md-3 d-flex align-items-center entete-logo">
-                        <button class="btn btn-menu me-2 d-flex justify-content-center align-items-center" id="trois"
+                        <button class="btn btn-menu me-2 d-flex justify-content-center align-items-center" class="trois" id="trois"
                             style="font-size:1.7rem;min-width:44px;min-height:44px;padding:0 10px;line-height:1;">
                             ☰
                         </button>
-                        <strong style="font-size: 30px; padding: 20px;" class="fs-5 ms-1 ms-md-2"><i class="fas fa-book" ></i> MBOA Librairie</strong>
+                        <strong style="font-size: 30px; padding: 20px;" class="fs-5 ms-1 ms-md-2"><i
+                                class="fas fa-book"></i> MBOA Librairie</strong>
                     </div>
                     <div class="col-12 col-md-5 mt-2 mt-md-0 entete-search">
                         <div class="input-group">
@@ -2386,10 +2461,12 @@
                     </div>
                     <div
                         class="col-6 col-md-4 d-flex justify-content-end align-items-center entete-actions mt-2 mt-md-0">
-                        <button class="btn btn-primary me-2 mb-1 mb-md-0" id="vendre"><i class="fas fa-plus"></i> Vendre</button>
+                        <button class="btn btn-primary me-2 mb-1 mb-md-0" id="vendre"><i class="fas fa-plus"></i>
+                            Vendre</button>
                         <button class="btn btn-success me-2 mb-1 mb-md-0" id="connexionn"><i
-                        class="fas fa-sign-in-alt"></i> Connexion</button>
-                        <a href="https://wa.me/237657300644" class="btn btn-secondary" id="question"><i class="fas fa-question"></i> Question</a>
+                                class="fas fa-sign-in-alt"></i> Connexion</button>
+                        <a href="https://wa.me/237657300644" class="btn btn-secondary" id="question"><i
+                                class="fas fa-question"></i> Question</a>
                     </div>
                 </div>
             </div>
@@ -2508,15 +2585,55 @@
                     margin-bottom: 5px;
                 }
             }
-            #profils{
+
+            #profils {
                 font-size: 19px;
                 color: #1f293786;
             }
-            #profils:hover{
+
+            #profils:hover {
                 color: rgba(37, 37, 180, 0.589);
-                background-color:rgba(0, 0, 255, 0.123)
+                background-color: rgba(0, 0, 255, 0.123)
             }
-        </style>                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                               
+
+            .lui {
+                display: flex;
+            }
+            
+  .notification {
+    position: fixed;
+    top: 30px;
+    right: 20px;
+    padding: 15px 20px;
+    border-radius: 8px;
+    color: white;
+    font-size: 1rem;
+    z-index: 9999;
+    box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+    opacity: 0;
+    transform: translateY(-20px);
+    animation: fadeIn 0.3s forwards;
+  }
+
+  .notification.info {
+    background-color: #28a745; 
+  }
+
+  .notification.error {
+    background-color: #dc3545; 
+  }
+
+  .notification.warning {
+    background-color: #ffc107; 
+    color: black;
+  }
+
+  @keyframes fadeIn {
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }        </style>
         <div class="fournitures" id="fourniture" style="display: none;">
             <p class="listes">❤️ Mes listes</p>
             <br>
@@ -2553,8 +2670,8 @@
         </div>
 
         <div id="connexion" style="display: none;">
-            <div class="advanced">
-                <h3 style="margin-bottom: 30px; color: var(--primary-color); font-size: 2rem;"> <i
+            <div class="lui">
+                <h3 style="margin-bottom: 30px; color: var(--primary-color); font-size: 2rem; text-align: center;"> <i
                         class="fas fa-sign-in-alt"></i> Connexion</h3>
             </div>
             <div id="formConnexion">
@@ -2562,7 +2679,8 @@
                 <input type="email" class="nom" id="email" placeholder="brayan@gmail.com" />
                 <label for="">Entrez votre mot de passe*</label>
                 <input type="password" class="nom" id="motdepasse" placeholder="......" />
-                <button id="btnSeConnecter" class="fas fa-sign-in-alt"> <i class="fas fa-sign-in-alt"></i> Seconnecter</button>
+                <button id="btnSeConnecter"> <i class="fas fa-sign-in-alt"></i>
+                    Seconnecter</button>
                 <button id="afficherInscription" class="btn btn-secondary" type="button"><i
                         class="fas fa-user-plus"></i> Créer un Compte</button>
             </div>
@@ -2580,6 +2698,8 @@
                         class="fas fa-sign-in-alt"></i>Déjà inscrit ? Se connecter</button>
             </div>
         </div>
+        <!-- conteneur profils -->
+        <div id="conteneurprofils"></div>
 
         <div class="chat-container" id="chat" style="display: none;">
             <div class="chat-header">
@@ -2626,9 +2746,6 @@
                 <button class="soumettre" id="soumettre" type="submit">🚀 Soumettre</button>
             </form>
         </div>
-
-
-
         <div class="form-container" id="formulaire" data-aos="fade-up" style="display: none;">
             <div class="advanced">
                 <h3 class="form-title"><i class="fas fa-plus"></i> Vendre une fourniture</h3><button class="croix"
@@ -2675,7 +2792,6 @@
                         <option value="sil">🔤 SIL</option>
                     </select>
                 </div>
-
                 <div class="form-group">
                     <label class="form-label" for="location">📍 Lieu (quartier) :</label>
                     <select class="form-select" id="location">
@@ -2711,7 +2827,6 @@
                 </div>
             </form>
         </div>
-
         <div class="profile" id="conteneurProfils" style="display: none;"></div>
     </div>
     <div class="menu">
@@ -2722,9 +2837,7 @@
         <button onclick="lireConversations()" class="btn btn-secondary" id="mess" aria-label="Voir mes conversations">
             <i class="fas fa-comments"></i> Messages
         </button>
-        <button class="btn btn-secondary" id="profils">
-            <i class="fas fa-user"></i> Profil
-        </button>
+
         <button class="btn btn-success" id="payer" style="display:none;">Payer 200 FCFA</button>
     </div>
     <script src="https://api-checkout.cinetpay.com/v2/checkout.js"></script>
@@ -2748,7 +2861,7 @@
         }
 
         function showPaiementMessage() {
-            Swal.fire('Il faut payer 200 FCFA pour continuer.');
+            showNotification('Il faut payer 200 FCFA pour continuer.');
         }
 
         function handleActionClick(e) {
@@ -2770,25 +2883,21 @@
         if (btnVendre) {
             btnVendre.addEventListener('click', function (e) {
                 if (!handleActionClick(e)) return;
-                // ... ici code vendre ...
             });
         }
         if (btnAcheter) {
             btnAcheter.addEventListener('click', function (e) {
                 if (!handleActionClick(e)) return;
-                // ... ici ton code acheter ...
             });
         }
         if (btnPayer) {
             btnPayer.addEventListener('click', function () {
-                // Ici tu mets ton code de paiement réel
-                // Si paiement réussi :
                 paiementEffectue = true;
                 localStorage.setItem('paiementEffectue', 'true');
                 actionsRestantes = 9999;
                 localStorage.setItem('actionsRestantes', actionsRestantes);
                 updateBoutonsEtat();
-                Swal.fire('Paiement réussi ! Vous pouvez continuer à vendre ou acheter.');
+                showNotification('Paiement réussi ! Vous pouvez continuer à vendre ou acheter.');
             });
         }
         updateBoutonsEtat();
@@ -2825,8 +2934,6 @@
         const conteneurProfils = document.getElementById("conteneurProfils");
         const formulaire = document.getElementById("formulaire");
         const confirmerBtn = document.getElementById("confirmer");
-
-
         // Variables globales pour annonces 
         let allAnnonces = [];
         let imageFile = null;
@@ -2839,7 +2946,6 @@
 
         let idAnnonceEnCours = null;
         let idConversation = null;
-
         window.addEventListener('DOMContentLoaded', () => {
             const emailAuto = localStorage.getItem('autoLoginEmail');
             const passwordAuto = localStorage.getItem('autoLoginPassword');
@@ -2858,7 +2964,7 @@
                         localStorage.removeItem('autoLoginEmail');
                         localStorage.removeItem('autoLoginPassword');
                     });
-            } else if (auth.currentUser){
+            } else if (auth.currentUser) {
                 document.getElementById("conteneurProfils").style.display = "block";
                 document.getElementById("fourniture").style.display = "none";
                 document.getElementById("conteneuravis").style.display = "none";
@@ -2875,14 +2981,16 @@
         const afficherConnexion = document.getElementById("afficherConnexion");
         const formConnexion = document.getElementById("formConnexion");
         const formInscription = document.getElementById("formInscription");
-
         afficherInscription.addEventListener("click", () => {
             formConnexion.style.display = "none";
             formInscription.style.display = "block";
+            document.getElementById("conteneurProfils").style.display = "none";
+
         });
         afficherConnexion.addEventListener("click", () => {
             formConnexion.style.display = "block";
             formInscription.style.display = "none";
+            document.getElementById("conteneurProfils").style.display = "none";
         });
         const btnDeconnexion = document.createElement("button");
         btnDeconnexion.textContent = "Déconnexion";
@@ -2900,8 +3008,21 @@
                 btnDeconnexion.style.display = "none";
             }
         }
+       function showNotification(message, type = 'info') {
+  const notif = document.createElement('div');
+  notif.className = `notification ${type}`;
+  notif.textContent = message;
+  document.body.appendChild(notif);
+  setTimeout(() => {
+    notif.remove();
+  }, 3000);
+}
 
-        // Fonction qui vérifie si tous les éléments sont prêts
+// Appel automatique
+showNotification("Bienvenue sur MBOA Librairie !", "info");
+        document.getElementById("photoB").addEventListener("click", function () {
+            document.getElementById("camer").click();
+        });
         function waitForElements() {
             return new Promise((resolve) => {
                 const checkElements = () => {
@@ -2918,6 +3039,34 @@
             });
         }
 
+        //gestion du profils
+//        document.getElementById('profils').addEventListener('click', function () {
+//     // Masquer les sections
+//     document.getElementById("conteneurProfils").style.display = "none";
+//     document.getElementById("fourniture").style.display = "none";
+//     document.getElementById("conteneuravis").style.display = "none";
+//     document.getElementById("avise").style.display = "none";
+//     document.getElementById("chat").style.display = "none";
+//     document.getElementById("connexion").style.display = "none";
+//     document.getElementById("formulaire").style.display = "none";
+
+//     const container = document.getElementById("conteneurprofils");
+//     if (!container) {
+//         showNotification("Erreur: Interface non disponible");
+//         return;
+//     }
+//     container.innerHTML = `<h3 class='section-title'class=" fas fa-user"> Mon Profil</h3>`;
+//     const currentUser= window.auth && window.auth.currentUser;
+//     if (!currentUser) {
+//         container.innerHTML += `<div style='text-align:center;color:red;margin-top:2rem;'>❌ Connecte-toi d'abord</div>`;
+//         return;
+//     }
+
+//     const email = currentUser.email;
+//     document.getElementById("userDisplay").textContent = `Connecté en tant que : ${email}`;
+//     document.getElementById("btnDeconnexion").style.display = "inline-block";
+// });
+
         //lireConversations
         async function lireConversations() {
             document.getElementById("conteneuravis").style.display = "none";
@@ -2931,8 +3080,8 @@
             await waitForElements();
             //Sélecteurs et masquage des sections
             const container = document.getElementById("conteneurProfils");
-            if (!container) return Swal.fire("Erreur: Interface non disponible");
-            ["fourniture","avise", "chat", "connexion", "formulaire"].forEach(id => {
+            if (!container) return  showNotification("Erreur: Interface non disponible");
+            ["fourniture", "avise", "chat", "connexion", "formulaire"].forEach(id => {
                 const el = document.getElementById(id);
                 if (el) el.style.display = "none";
             });
@@ -3066,6 +3215,7 @@
                 lireConversations();
             };
         }
+
         document.getElementById("accueilBtn").addEventListener("click", function () {
             document.getElementById("conteneurProfils").style.display = "block";
             document.getElementById("fourniture").style.display = "none";
@@ -3091,43 +3241,42 @@
                 const numero = document.getElementById("numeroIns").value.trim();
                 const emailError = validateInput(email, 'email');
                 if (emailError) {
-                    Swal.fire(emailError);
+                    showNotification(emailError);
                     return;
                 }
 
                 const passwordError = validateInput(password, 'password');
                 if (passwordError) {
-                    Swal.fire(passwordError);
+                     showNotification(passwordError);
                     return;
                 }
 
                 if (!nom || nom.length < 3) {
-                    Swal.fire("Le nom doit contenir au moins 3 caractères");
+                     showNotification("Le nom doit contenir au moins 3 caractères");
                     return;
                 }
 
                 if (!numero || numero.length < 9) {
-                    Swal.fire("Le numéro doit contenir au moins 9 chiffres");
+                     showNotification("Le numéro doit contenir 9 chiffres");
                     return;
                 }
 
                 await createUserWithEmailAndPassword(auth, email, password);
-                await signInWithEmailAndPassword(auth, email, password);
 
                 // Sauvegarder 
                 await setDoc(doc(db, "users", email), {
                     nom: escapeHTML(nom),
                     numero: escapeHTML(numero),
                     email: email,
-                    code:password,
+                    code: password,
                     dateCreation: Date.now()
                 });
 
                 // Enregistre pour auto-login
-                localStorage.setItem('autoLoginEmail', email);
-                localStorage.setItem('autoLoginPassword', password);
+                // localStorage.setItem('autoLoginEmail', email);
+                // localStorage.setItem('autoLoginPassword', password);
 
-                Swal.fire("Compte créé et connecté !");
+                showNotification("Compte créé et connecté !");
                 document.getElementById("conteneurProfils").style.display = "block";
                 document.getElementById("connexion").style.display = "none";
 
@@ -3146,11 +3295,10 @@
                     message = "Adresse email invalide";
                 }
 
-                Swal.fire(message);
+                 showNotification(message);
             }
         });
-
-        // --- Connexion ---
+        
         btnSeConnecter.addEventListener("click", async () => {
             try {
                 document.getElementById("conteneuravis").style.display = "none";
@@ -3167,12 +3315,12 @@
                 // Validation des entrées
                 const emailError = validateInput(email, 'email');
                 if (emailError) {
-                    Swal.fire(emailError);
+                 showNotification(emailError);
                     return;
                 }
 
                 if (!password || password.length < 6) {
-                    Swal.fire("Le mot de passe doit contenir au moins 6 caractères");
+                     showNotification("Le mot de passe doit contenir au moins 6 caractères");
                     return;
                 }
 
@@ -3182,7 +3330,7 @@
                 localStorage.setItem('autoLoginEmail', email);
                 localStorage.setItem('autoLoginPassword', password);
 
-                Swal.fire("Connecté avec succès !");
+                 showNotification("Connecté avec succès !");
                 document.getElementById("conteneurProfils").style.display = "block";
                 document.getElementById("connexion").style.display = "none";
                 chargerToutesLesAnnonces();
@@ -3200,7 +3348,7 @@
                     message = "Trop de tentatives. Réessayez plus tard";
                 }
 
-                Swal.fire(message);
+                 showNotification(message);
             }
         });
 
@@ -3209,7 +3357,7 @@
             await signOut(auth);
             localStorage.removeItem('autoLoginEmail');
             localStorage.removeItem('autoLoginPassword');
-            Swal.fire("Déconnecté !");
+            showNotification("Déconnecté !");
             document.getElementById("conteneurProfils").style.display = "block";
         });
 
@@ -3466,7 +3614,7 @@
             const stars = document.querySelectorAll('#stars .star.active').length;
             const comment = document.getElementById("avi").value.trim();
             if (!stars || !comment) {
-                Swal.fire("Merci de donner une note et un commentaire.");
+                showNotification("Merci de donner une note et un commentaire.");
                 return;
             }
             try {
@@ -3480,14 +3628,14 @@
                 const avisSnap = await getDocs(collection(db, "avis"));
                 const avisList = avisSnap.docs.map(doc => ({ id: doc.id, ...doc.data() }));
                 afficheravis(avisList);
-                Swal.fire("Merci pour votre avis !");
+                 showNotification("Merci pour votre avis !");
             } catch (err) {
-                Swal.fire("Erreur lors de l'envoi de l'avis.");
+                 showNotification("Erreur lors de l'envoi de l'avis.");
             }
         });
 
         //Fonction de validation des entrées 
-        function validateInput(input, type){
+        function validateInput(input, type) {
             const value = input.trim();
             switch (type) {
                 case 'email':
@@ -3514,8 +3662,6 @@
 
             return null;
         }
-
-        // --- Fonction pour échapper le HTML ---
         function escapeHTML(str) {
             if (!str) return "";
             return str.replace(/&/g, "&amp;")
@@ -3549,10 +3695,8 @@
                         achatBloque = true;
                         Swal.fire("Vous avez atteint la limite de vos achats cliquez sur payer pour continuer(200 fcfa) ");
                         document.getElementById("payer").style.display = "block";
-
                     }
                 }
-
                 return `
                     <div class="annonce-card">
                         ${annonce.imageUrl ? `<img src="${escapeHTML(annonce.imageUrl)}" alt="${escapeHTML(annonce.nomProduit)}" class="annonce-image" />` : ''}
@@ -3586,9 +3730,7 @@
                     </div>
                 `;
             });
-
             const annoncesContent = await Promise.all(annoncesHTML);
-
             container.innerHTML = `
                 <div class="container">
                     <div class="annonces-grid">
@@ -3664,7 +3806,7 @@
                         if (btnVendre) btnVendre.disabled = false;
                         if (btnPayer) btnPayer.style.display = 'none';
                     } else {
-                        Swal.fire('Paiement échoué.');
+                         showNotification('Paiement échoué.');
                     }
                 });
             });
@@ -3733,40 +3875,141 @@
         };
 
         chargerToutesLesAnnonces();
+// Aperçu de l'image sélectionnée
+document.getElementById("camer").addEventListener("change", function (event) {
+  const file = event.target.files[0];
+  if (file) {
+    imageFile = file; 
 
-        // --- Fonction d'upload Base64 (Gratuit et permanent) ---
-        async function uploadImage(file) {
-            // Validation de la taille (1MB max pour Firestore)
-            if (file.size > 1024 * 1024) {
-                throw new Error("L'image doit faire moins de 1MB");
-            }
+    const reader = new FileReader();
+    reader.onload = function (e) {
+      const preview = document.getElementById("photoPreview");
+      preview.src = e.target.result;
+      preview.style.display = "block";
+    };
+    reader.onerror = function (error) {
+      console.error("Erreur de lecture du fichier :", error);
+       showNotification("Impossible de lire l'image.");
+    };
+    reader.readAsDataURL(file);
+  }
+});
 
-            // Conversion en Base64
-            return await fileToBase64(file);
-        }
+// Fonction pour convertir en Base64
+function fileToBase64(file) {
+  return new Promise((resolve, reject) => {
+    const reader = new FileReader();
+    reader.readAsDataURL(file);
+    reader.onload = () => resolve(reader.result);
+    reader.onerror = error => reject(error);
+  });
+}
 
-        function fileToBase64(file) {
-            return new Promise((resolve, reject) => {
-                const reader = new FileReader();
-                reader.readAsDataURL(file);
-                reader.onload = () => resolve(reader.result);
-                reader.onerror = error => reject(error);
-            });
-        }
+// Fonction d'upload avec vérification de taille
+async function uploadImage(file) {
+  if (file.size > 1024 * 1024) {
+    throw new Error("L'image doit faire moins de 1MB");
+  }
+  return await fileToBase64(file);
+}
 
+// Soumission du formulaire
+
+form.addEventListener("submit", async (e) => {
+  e.preventDefault();
+
+  // Masquer les sections
+  contenuerAvis.style.display = "none";
+  document.getElementById("conteneurProfils").style.display = "none";
+  document.getElementById("fourniture").style.display = "none";
+  document.getElementById("avise").style.display = "none";
+  document.getElementById("chat").style.display = "none";
+  document.getElementById("connexion").style.display = "none";
+
+  if (!utilisateurConnecte()) {
+    showNotification("Vous devez être connecté pour publier une annonce.");
+    return;
+  }
+  // Vérification du nombre de ventes
+  const stats = await getUserStats(auth.currentUser.email);
+  if (stats.ventes >= 2) {
+     showNotification("Vous avez atteint la limite de 2 ventes.");
+    return;
+  }
+
+  if (!imageFile) {
+     showNotification("Merci de sélectionner une image !");
+    return;
+  }
+
+  const nomProduit = document.getElementById("item").value;
+  const prix = document.getElementById("price").value;
+  const classe = document.getElementById("classe").value;
+  const lieu = document.getElementById("location").value;
+  const description = document.getElementById("description").value;
+  const categorie = document.getElementById("categorie").value;
+
+  let imageUrl = "";
+  try {
+    imageUrl = await uploadImage(imageFile);
+
+    // Ajout dans Firestore
+    const docRef = await addDoc(collection(db, "annonces"), {
+      nomProduit,
+      prix,
+      classe,
+      lieu,
+      description,
+      categorie,
+      imageUrl,
+      auteur: auth.currentUser.email,
+      timestamp:new Date().toISOString()
+    });
+
+    const nouvelleAnnonce = {
+      id: docRef.id,
+      nomProduit,
+      prix,
+      classe,
+      lieu,
+      description,
+      categorie,
+      imageUrl,
+      auteur: auth.currentUser.email
+    };
+
+    allAnnonces.unshift(nouvelleAnnonce);
+    await incrementUserStat(auth.currentUser.email, "ventes");
+
+    // Affichage
+    afficherAnnonces(allAnnonces);
+     showNotification("Annonce postée avec succès");
+
+    // Réinitialisation
+    form.style.display = "none";
+    form.reset();
+    document.getElementById("photoPreview").style.display = "none";
+    imageFile = null;
+    checkBlockPublier();
+
+  } catch (err) {
+    console.error("Erreur :", err);
+     showNotification("Erreur lors de la publication ou de l'upload de l'image : " + err.message);
+  }
+});
         window.envoyerMessage = async function () {
             const input = document.getElementById('messageInput');
             const message = input.value.trim();
             if (!message) {
-                Swal.fire("Veuillez entrez un message");
+                 showNotification("Veuillez entrez un message");
                 return;
             }
             if (!utilisateurConnecte()) {
-                Swal.fire("Vous devez être connecté pour envoyer un message.");
+                showNotification("Vous devez être connecté pour envoyer un message.");
                 return;
             }
             if (!idAnnonceEnCours || !idConversation) {
-                Swal.fire("Aucune conversation active.");
+                 showNotification("Aucune conversation active.");
                 return;
             }
             try {
@@ -3779,7 +4022,7 @@
                 input.value = '';
             } catch (error) {
                 console.error("Erreur envoi message:", error);
-                Swal.fire("Erreur lors de l'envoi du message.");
+                 showNotification("Erreur lors de l'envoi du message.");
             }
         }
         async function getUserStats(email) {
@@ -3800,13 +4043,13 @@
         // --- Bloque le bouton publier si plus de 2 ventes ---
         async function checkBlockPublier() {
             if (!utilisateurConnecte())
-                Swal.fire("Vous deverez etre connecter");
+                 showNotification("Vous deverez etre connecter");
             return;
             const stats = await getUserStats(auth.currentUser.email);
             if (stats.ventes >= 2) {
                 confirmerBtn.disabled = true;
                 confirmerBtn.title = "Vous avez atteint la limite de 2 ventes.";
-                Swal.fire("Vous avez atteint la limite de 2 ventes.payer 200fcfa pour continuer")
+                 showNotification("Vous avez atteint la limite de 2 ventes.payer 200fcfa pour continuer")
                 document.getElementById("payer").style.display = "block";
             } else {
                 confirmerBtn.disabled = false;
@@ -3820,7 +4063,7 @@
             payerBtn.addEventListener("click", function () {
                 startPayment(200, async function (success) {
                     if (success) {
-                        alert("Paiement validé ! Vous pouvez continuer vos ventes ou achats.");
+                         showNotification("Paiement validé ! Vous pouvez continuer vos ventes ou achats.");
                         if (utilisateurConnecte()) {
                             const email = auth.currentUser.email;
                             const userRef = doc(db, "users", email);
@@ -3837,7 +4080,7 @@
         document.getElementById("payer").addEventListener("click", function () {
             startPayment(200, function (success) {
                 if (success) {
-                    Swal.fire("Paiement validé ! Vous pouvez continuer vos ventes ou achats.");
+                     showNotification("Paiement validé ! Vous pouvez continuer vos ventes ou achats.");
                     // Remet à zéro les compteurs Firestore
                     if (utilisateurConnecte()) {
                         const email = auth.currentUser.email;
@@ -3856,7 +4099,7 @@
             console.log('ouvrirChat appelé avec:', idAnnonce, emailAcheteur, emailVendeur);
 
             if (!idAnnonce || !emailAcheteur || !emailVendeur) {
-                Swal.fire("Erreur : paramètres du chat manquants !");
+                 showNotification("Erreur : paramètres du chat manquants !");
                 return;
             }
 
@@ -3905,24 +4148,24 @@
                 });
             } catch (error) {
                 console.error("Erreur ouverture chat:", error);
-                Swal.fire("Erreur lors de l'ouverture du chat.");
+               showNotification("Erreur lors de l'ouverture du chat.");
             }
         }
         // conclure la transaction
         async function conclureJob() {
             if (!idAnnonceEnCours) {
-                Swal.fire("Aucune annonce active.");
+                showNotification("Aucune annonce active.");
                 return;
             }
             if (!utilisateurConnecte()) {
-                Swal.fire("Vous devez être connecté pour conclure.");
+                 showNotification("Vous devez être connecté pour conclure.");
                 return;
             }
             try {
                 const annonceRef = doc(db, "annonces", idAnnonceEnCours);
                 const snap = await getDoc(annonceRef);
                 if (!snap.exists()) {
-                    Swal.fire("Annonce introuvable.");
+                    showNotification("Annonce introuvable.");
                     return;
                 }
 
@@ -3932,7 +4175,7 @@
                 await updateDoc(annonceRef, { conclusionUsers: c });
                 if (c.length >= 2) await updateDoc(annonceRef, { conclu: true });
 
-                Swal.fire("Conclusion enregistrée");
+                 showNotification("Conclusion enregistrée");
                 document.getElementById("chat").style.display = "none";
                 document.getElementById("conteneurProfils").style.display = "block";
             } catch (error) {
@@ -3957,7 +4200,7 @@
 
             const user = auth.currentUser;
             if (!user) {
-                Swal.fire("Connecte-toi d'abord");
+                 showNotification("Connecte-toi d'abord");
                 return;
             }
 
@@ -4180,5 +4423,3 @@
 
     </script>
 </body>
-
-</html>
