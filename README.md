@@ -1,4 +1,3 @@
-<!DOCTYPE html>
 <html lang="en">
 
 <head>
@@ -7,742 +6,31 @@
     <title>Chat Application</title>
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
 
-    <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
-
-        body {
-            font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
-            background-color: #f5f5f5;
-            height: 100vh;
-            overflow: hidden;
-        }
-
-        .sidebar {
-            position: fixed;
-            left: 20%;
-            top: 0;
-            width: 2px;
-            height: 100vh;
-            background-color: #ddd;
-            z-index: 100;
-        }
-
-        .autre {
-            position: fixed;
-            left: 0;
-            top: 0;
-            width: 20%;
-            height: 100vh;
-            background: linear-gradient(135deg, #2c3e50 0%, #34495e 100%);
-            color: white;
-            padding: 20px;
-            overflow-y: auto;
-            box-shadow: 2px 0 10px rgba(0, 0, 0, 0.1);
-        }
-
-        .encore {
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-            margin-bottom: 20px;
-            padding-bottom: 15px;
-            border-bottom: 1px solid rgba(255, 255, 255, 0.2);
-        }
-
-        .utilise {
-            font-size: 18px;
-            font-weight: bold;
-            color: #ecf0f1;
-        }
-
-        .deconnexion {
-            background: linear-gradient(135deg, #e74c3c 0%, #c0392b 100%);
-            color: white;
-            border: none;
-            padding: 8px 15px;
-            border-radius: 20px;
-            cursor: pointer;
-            font-size: 12px;
-            transition: all 0.3s ease;
-            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
-        }
-
-        .deconnexion:hover {
-            background: linear-gradient(135deg, #c0392b 0%, #a93226 100%);
-            transform: translateY(-2px);
-            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
-        }
-
-        .liste {
-            margin-top: 20px;
-            padding: 15px;
-            background: rgba(255, 255, 255, 0.1);
-            border-radius: 10px;
-            backdrop-filter: blur(10px);
-        }
-
-        .liste strong {
-            display: block;
-            margin-bottom: 10px;
-            color: #ecf0f1;
-            font-size: 14px;
-        }
-
-        .liste span {
-            color: #3498db;
-            font-weight: bold;
-        }
-
-        .tous {
-            position: relative;
-            left: 20%;
-            width: 80%;
-            height: 100vh;
-        }
-
-        .entete {
-            position: fixed;
-            top: 0;
-            left: 20%;
-            width: 80%;
-            height: 70px;
-            background: linear-gradient(135deg, #ffffff 0%, #f8f9fa 100%);
-            border-bottom: 1px solid #e9ecef;
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-            z-index: 50;
-            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
-            padding: 0 30px;
-        }
-
-        .entete h3 {
-            color: #2c3e50;
-            font-size: 20px;
-            font-weight: bold;
-            display: flex;
-            align-items: center;
-            gap: 10px;
-        }
-
-        .entete h3 i {
-            color: #3498db;
-        }
-
-        .zone_chat {
-            position: fixed;
-            top: 70px;
-            left: 20%;
-            width: 80%;
-            height: calc(100vh - 170px);
-            background: linear-gradient(135deg, #f8f9fa 0%, #e9ecef 100%);
-            overflow-y: auto;
-            padding: 20px;
-            scroll-behavior: smooth;
-        }
-
-        .info {
-            position: fixed;
-            bottom: 0;
-            left: 20%;
-            width: 80%;
-            height: 100px;
-            background: linear-gradient(135deg, #ffffff 0%, #f8f9fa 100%);
-            border-top: 1px solid #e9ecef;
-            display: flex;
-            align-items: center;
-            padding: 0 30px;
-            box-shadow: 0 -2px 10px rgba(0, 0, 0, 0.1);
-            gap: 15px;
-        }
-
-        #message {
-            flex: 1;
-            height: 50px;
-            border: 2px solid #e9ecef;
-            border-radius: 25px;
-            padding: 0 20px;
-            font-size: 16px;
-            transition: all 0.3s ease;
-            background: #ffffff;
-        }
-
-        #message:focus {
-            outline: none;
-            border-color: #3498db;
-            box-shadow: 0 0 0 3px rgba(52, 152, 219, 0.1);
-        }
-
-        .bas {
-            height: 50px;
-            padding: 0 20px;
-            border: none;
-            border-radius: 25px;
-            cursor: pointer;
-            font-size: 14px;
-            font-weight: 600;
-            transition: all 0.3s ease;
-            display: flex;
-            align-items: center;
-            gap: 8px;
-            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
-        }
-
-        #envoi {
-            background: linear-gradient(135deg, #3498db 0%, #2980b9 100%);
-            color: white;
-        }
-
-        #envoi:hover {
-            background: linear-gradient(135deg, #2980b9 0%, #21618c 100%);
-            transform: translateY(-2px);
-            box-shadow: 0 4px 12px rgba(52, 152, 219, 0.4);
-        }
-
-        #emoji {
-            background: linear-gradient(135deg, #f39c12 0%, #e67e22 100%);
-            color: white;
-        }
-
-        #emoji:hover {
-            background: linear-gradient(135deg, #e67e22 0%, #d68910 100%);
-            transform: translateY(-2px);
-            box-shadow: 0 4px 12px rgba(243, 156, 18, 0.4);
-        }
-
-        #image {
-            background: linear-gradient(135deg, #27ae60 0%, #229954 100%);
-            color: white;
-        }
-
-        #image:hover {
-            background: linear-gradient(135deg, #229954 0%, #1e8449 100%);
-            transform: translateY(-2px);
-            box-shadow: 0 4px 12px rgba(39, 174, 96, 0.4);
-        }
-
-        .message {
-            margin-bottom: 15px;
-            padding: 15px 20px;
-            border-radius: 20px;
-            max-width: 70%;
-            word-wrap: break-word;
-            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
-            position: relative;
-            animation: messageSlide 0.3s ease-out;
-        }
-
-        @keyframes messageSlide {
-            from {
-                opacity: 0;
-                transform: translateY(20px);
-            }
-
-            to {
-                opacity: 1;
-                transform: translateY(0);
-            }
-        }
-
-        .message.sent {
-            background: linear-gradient(135deg, #3498db 0%, #2980b9 100%);
-            color: white;
-            margin-left: auto;
-            border-bottom-right-radius: 5px;
-        }
-
-        .message.received {
-            background: linear-gradient(135deg, #ffffff 0%, #f8f9fa 100%);
-            color: #2c3e50;
-            margin-right: auto;
-            border: 1px solid #e9ecef;
-            border-bottom-left-radius: 5px;
-        }
-
-        .message-info {
-            font-size: 11px;
-            opacity: 0.8;
-            margin-bottom: 5px;
-        }
-
-        .message-text {
-            font-size: 14px;
-            line-height: 1.4;
-        }
-
-        #photoPreview {
-            display: none;
-            margin-bottom: 10px;
-            border-radius: 10px;
-            max-width: 200px;
-            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
-        }
-
-        .emo {
-            display: none;
-            position: absolute;
-            bottom: 120px;
-            left: 30px;
-            width: 320px;
-            height: 120px;
-            background: linear-gradient(135deg, #ffffff 0%, #f8f9fa 100%);
-            border: 1px solid #e9ecef;
-            border-radius: 15px;
-            padding: 15px;
-            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.15);
-            z-index: 1000;
-            overflow-y: auto;
-            backdrop-filter: blur(10px);
-        }
-
-        .emo span {
-            cursor: pointer;
-            font-size: 24px;
-            margin: 8px;
-            display: inline-block;
-            transition: transform 0.2s ease;
-            padding: 5px;
-            border-radius: 8px;
-        }
-
-        .emo span:hover {
-            transform: scale(1.3);
-            background: rgba(52, 152, 219, 0.1);
-        }
-
-        .anonyme {
-            height: 45px;
-            padding: 0 20px;
-            border-radius: 25px;
-            background: linear-gradient(135deg, #9b59b6 0%, #8e44ad 100%);
-            border: none;
-            color: white;
-            font-weight: 600;
-            font-size: 14px;
-            cursor: pointer;
-            transition: all 0.3s ease;
-            box-shadow: 0 2px 10px rgba(155, 89, 182, 0.3);
-            display: flex;
-            align-items: center;
-            gap: 8px;
-        }
-
-        .anonyme:hover {
-            background: linear-gradient(135deg, #8e44ad 0%, #7d3c98 100%);
-            transform: translateY(-2px);
-            box-shadow: 0 4px 15px rgba(155, 89, 182, 0.4);
-        }
-
-        /* Styles de connexion améliorés */
-        :root {
-            --primary-color: #667eea;
-            --primary-dark: #5a6fd8;
-            --secondary-color: #764ba2;
-            --accent-color: #f093fb;
-            --text-primary: #2d3748;
-            --text-secondary: #718096;
-            --bg-primary: #ffffff;
-            --bg-secondary: #f7fafc;
-            --border-color: #e2e8f0;
-            --success-color: #48bb78;
-            --error-color: #f56565;
-            --shadow-light: 0 4px 6px rgba(0, 0, 0, 0.05);
-            --shadow-medium: 0 10px 25px rgba(0, 0, 0, 0.1);
-            --shadow-heavy: 0 20px 40px rgba(0, 0, 0, 0.15);
-        }
-
-        body::before {
-            content: '';
-            position: absolute;
-            top: -50%;
-            left: -50%;
-            width: 200%;
-            height: 200%;
-            background: radial-gradient(circle, rgba(255, 255, 255, 0.1) 1px, transparent 1px);
-            background-size: 50px 50px;
-            animation: float 20s linear infinite;
-            pointer-events: none;
-            z-index: -1;
-        }
-
-        @keyframes float {
-            0% {
-                transform: translate(0, 0) rotate(0deg);
-            }
-
-            100% {
-                transform: translate(-50px, -50px) rotate(360deg);
-            }
-        }
-
-        #connexion {
-            position: fixed;
-            top: 50%;
-            left: 50%;
-            transform: translate(-50%, -50%);
-            background: var(--bg-primary);
-            border-radius: 24px;
-            box-shadow: var(--shadow-heavy);
-            width: 100%;
-            max-width: 480px;
-            overflow: hidden;
-            backdrop-filter: blur(20px);
-            border: 1px solid rgba(255, 255, 255, 0.2);
-            padding: 40px;
-            z-index: 1000;
-        }
-
-        #connexion::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            right: 0;
-            height: 4px;
-            background: linear-gradient(90deg, var(--primary-color), var(--accent-color), var(--primary-color));
-            background-size: 200% 100%;
-            animation: shimmer 3s ease-in-out infinite;
-        }
-
-        @keyframes shimmer {
-
-            0%,
-            100% {
-                background-position: -200% 0;
-            }
-
-            50% {
-                background-position: 200% 0;
-            }
-        }
-
-        .lui {
-            text-align: center;
-            padding-bottom: 20px;
-            background: linear-gradient(135deg, rgba(102, 126, 234, 0.1) 0%, rgba(118, 75, 162, 0.1) 100%);
-            margin: -40px -40px 30px -40px;
-            padding: 40px 40px 20px;
-        }
-
-        .lui h3 {
-            color: var(--text-primary);
-            font-weight: 700;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            gap: 12px;
-            margin-bottom: 30px !important;
-            font-size: 2rem !important;
-        }
-
-        .lui h3 i {
-            color: var(--primary-color);
-            animation: pulse 2s ease-in-out infinite;
-        }
-
-        @keyframes pulse {
-
-            0%,
-            100% {
-                transform: scale(1);
-            }
-
-            50% {
-                transform: scale(1.1);
-            }
-        }
-
-        .form-group {
-            display: block;
-            margin-bottom: 24px;
-            position: relative;
-        }
-
-        .form-group label {
-            display: block;
-            color: var(--text-primary);
-            font-weight: 600;
-            margin-bottom: 8px;
-            font-size: 0.95rem;
-        }
-
-        .input-wrapper {
-            position: relative;
-        }
-
-        .nom {
-            width: 100%;
-            padding: 16px 20px;
-            border: 2px solid var(--border-color);
-            border-radius: 12px;
-            font-size: 1rem;
-            background: var(--bg-secondary);
-            color: var(--text-primary);
-            transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
-            outline: none;
-        }
-
-        .nom:focus {
-            border-color: var(--primary-color);
-            background: var(--bg-primary);
-            box-shadow: 0 0 0 3px rgba(102, 126, 234, 0.1);
-            transform: translateY(-2px);
-        }
-
-        .nom::placeholder {
-            color: var(--text-secondary);
-            opacity: 0.8;
-        }
-
-        .input-icon {
-            position: absolute;
-            right: 16px;
-            top: 50%;
-            transform: translateY(-50%);
-            color: var(--text-secondary);
-            transition: color 0.3s ease;
-        }
-
-        .nom:focus+.input-icon {
-            color: var(--primary-color);
-        }
-
-        .btn {
-            width: 100%;
-            padding: 16px;
-            border: none;
-            border-radius: 12px;
-            font-size: 1.1rem;
-            font-weight: 600;
-            cursor: pointer;
-            transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            gap: 8px;
-            position: relative;
-            overflow: hidden;
-        }
-
-        .btn::before {
-            content: '';
-            position: absolute;
-            top: 50%;
-            left: 50%;
-            width: 0;
-            height: 0;
-            background: rgba(255, 255, 255, 0.2);
-            border-radius: 50%;
-            transform: translate(-50%, -50%);
-            transition: width 0.6s, height 0.6s;
-        }
-
-        .btn:active::before {
-            width: 300px;
-            height: 300px;
-        }
-
-        .btn-primary {
-            background: linear-gradient(135deg, var(--primary-color) 0%, var(--secondary-color) 100%);
-            color: white;
-            box-shadow: var(--shadow-medium);
-        }
-
-        .btn-primary:hover {
-            transform: translateY(-3px);
-            box-shadow: 0 15px 35px rgba(102, 126, 234, 0.4);
-        }
-
-        .form-toggle {
-            opacity: 1;
-            visibility: visible;
-            position: relative;
-        }
-
-        .form-toggle.active {
-            opacity: 1;
-            visibility: visible;
-            transform: translateX(0);
-        }
-
-        .notification {
-            position: fixed;
-            top: 30px;
-            right: 30px;
-            padding: 15px 25px;
-            border-radius: 10px;
-            color: white;
-            font-size: 14px;
-            font-weight: 600;
-            z-index: 9999;
-            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.15);
-            transform: translateX(400px);
-            transition: all 0.4s cubic-bezier(0.25, 0.8, 0.25, 1);
-            backdrop-filter: blur(10px);
-        }
-
-        .notification.show {
-            transform: translateX(0);
-        }
-
-        .notification.info {
-            background: linear-gradient(135deg, #28a745 0%, #20c997 100%);
-        }
-
-        .notification.error {
-            background: linear-gradient(135deg, #dc3545 0%, #e74c3c 100%);
-        }
-
-        /* Responsive Design */
-        @media (max-width: 768px) {
-            .autre {
-                width: 100%;
-                height: 80px;
-                position: relative;
-                flex-direction: row;
-                align-items: center;
-            }
-
-            .sidebar {
-                display: none;
-            }
-
-            .tous {
-                left: 0;
-                width: 100%;
-                top: 80px;
-                height: calc(100vh - 80px);
-            }
-
-            .entete {
-                left: 0;
-                width: 100%;
-                top: 80px;
-            }
-
-            .zone_chat {
-                left: 0;
-                width: 100%;
-                top: 150px;
-                height: calc(100vh - 250px);
-            }
-
-            .info {
-                left: 0;
-                width: 100%;
-                padding: 0 15px;
-            }
-
-            .message {
-                max-width: 85%;
-            }
-
-            #connexion {
-                margin: 20px;
-                max-width: calc(100% - 40px);
-            }
-        }
-
-        /* Animation d'entrée pour les messages */
-        .message-enter {
-            animation: messageEnter 0.5s ease-out;
-        }
-
-        @keyframes messageEnter {
-            from {
-                opacity: 0;
-                transform: translateY(30px) scale(0.8);
-            }
-
-            to {
-                opacity: 1;
-                transform: translateY(0) scale(1);
-            }
-        }
-
-        /* Indicateur de frappe */
-        .typing-indicator {
-            display: none;
-            padding: 15px 20px;
-            margin: 10px 0;
-            background: #f8f9fa;
-            border-radius: 20px;
-            max-width: 100px;
-            border: 1px solid #e9ecef;
-        }
-
-        .typing-dots {
-            display: flex;
-            gap: 4px;
-            align-items: center;
-        }
-
-        .typing-dots span {
-            width: 8px;
-            height: 8px;
-            background: #6c757d;
-            border-radius: 50%;
-            animation: typing 1.4s infinite;
-        }
-
-        .typing-dots span:nth-child(2) {
-            animation-delay: 0.2s;
-        }
-
-        .typing-dots span:nth-child(3) {
-            animation-delay: 0.4s;
-        }
-
-        @keyframes typing {
-
-            0%,
-            60%,
-            100% {
-                transform: translateY(0);
-            }
-
-            30% {
-                transform: translateY(-10px);
-            }
-        }
+    <style>*{margin:0;padding:0;box-sizing:border-box}body{font-family:system-ui,-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,Oxygen,Ubuntu,Cantarell,'Open Sans','Helvetica Neue',sans-serif;background-color:#f5f5f5;height:100vh;overflow:hidden}.sidebar{position:fixed;left:280px;top:0;width:2px;height:100vh;background-color:#ddd;z-index:100}.autre{position:fixed;left:0;top:0;width:280px;height:100vh;background:linear-gradient(135deg,#2c3e50 0%,#34495e 100%);color:#fff;overflow-y:auto;box-shadow:2px 0 10px rgba(0,0,0,.1);transition:transform .3s ease;z-index:200}.autre-header{padding:20px;border-bottom:1px solid rgba(255,255,255,.1)}.encore{display:flex;align-items:center;justify-content:space-between;margin-bottom:15px}.utilise{font-size:16px;font-weight:bold;color:#ecf0f1}.deconnexion{background:linear-gradient(135deg,#e74c3c 0%,#c0392b 100%);color:#fff;border:none;padding:6px 12px;border-radius:15px;cursor:pointer;font-size:11px;transition:all .3s ease}.deconnexion:hover{transform:translateY(-1px);box-shadow:0 4px 8px rgba(0,0,0,.3)}.liste{padding:0 20px 20px}.liste strong{display:block;margin-bottom:15px;color:#ecf0f1;font-size:14px;border-bottom:1px solid rgba(255,255,255,.1);padding-bottom:8px}.user-item{display:flex;align-items:center;justify-content:space-between;padding:10px;margin:5px 0;background:rgba(255,255,255,.1);border-radius:8px;cursor:pointer;transition:all .3s ease;position:relative}.user-item:hover{background:rgba(255,255,255,.2);transform:translateX(5px)}.user-info{display:flex;align-items:center;gap:10px}.user-status{width:8px;height:8px;background:#27ae60;border-radius:50%;border:2px solid #fff}.user-name{font-size:13px;color:#ecf0f1}.notification-badge{background:#e74c3c;color:#fff;border-radius:50%;width:20px;height:20px;display:none;align-items:center;justify-content:center;font-size:11px;font-weight:bold;position:absolute;right:5px;top:5px;animation:pulse 1s infinite}@keyframes pulse{0%,100%{transform:scale(1)}50%{transform:scale(1.1)}}.tous{position:relative;left:280px;width:calc(100% - 280px);height:100vh;transition:all .3s ease}.entete{position:fixed;top:0;left:280px;width:calc(100% - 280px);height:70px;background:linear-gradient(135deg,#fff 0%,#f8f9fa 100%);border-bottom:1px solid #e9ecef;display:flex;align-items:center;justify-content:space-between;z-index:150;box-shadow:0 2px 10px rgba(0,0,0,.1);padding:0 30px;transition:all .3s ease}.entete h3{color:#2c3e50;font-size:18px;font-weight:bold;display:flex;align-items:center;gap:10px}.chat-actions{display:flex;gap:10px;align-items:center}.mobile-menu-btn{display:none;background:none;border:none;font-size:20px;color:#2c3e50;cursor:pointer;padding:10px}.zone_chat{position:fixed;top:70px;left:280px;width:calc(100% - 280px);height:calc(100vh - 170px);background:linear-gradient(135deg,#f8f9fa 0%,#e9ecef 100%);overflow-y:auto;padding:20px;scroll-behavior:smooth;transition:all .3s ease}.info{position:fixed;bottom:0;left:280px;width:calc(100% - 280px);background:linear-gradient(135deg,#fff 0%,#f8f9fa 100%);border-top:1px solid #e9ecef;padding:15px 30px;box-shadow:0 -2px 10px rgba(0,0,0,.1);transition:all .3s ease}.message-input-container{display:flex;align-items:center;gap:15px;margin-bottom:10px}.reply-indicator{display:none;background:rgba(52,152,219,.1);border-left:3px solid #3498db;padding:8px 12px;border-radius:5px;margin-bottom:10px;font-size:12px;color:#666}.reply-close{float:right;cursor:pointer;color:#999;font-weight:bold}#message{flex:1;height:45px;border:2px solid #e9ecef;border-radius:22px;padding:0 20px;font-size:14px;transition:all .3s ease;background:#fff}#message:focus{outline:none;border-color:#3498db;box-shadow:0 0 0 3px rgba(52,152,219,.1)}.bas{height:45px;padding:0 18px;border:none;border-radius:22px;cursor:pointer;font-size:13px;font-weight:600;transition:all .3s ease;display:flex;align-items:center;gap:6px;box-shadow:0 2px 5px rgba(0,0,0,.1)}#envoi{background:linear-gradient(135deg,#3498db 0%,#2980b9 100%);color:#fff}#emoji{background:linear-gradient(135deg,#f39c12 0%,#e67e22 100%);color:#fff}#image{background:linear-gradient(135deg,#27ae60 0%,#229954 100%);color:#fff}.bas:hover{transform:translateY(-2px);box-shadow:0 4px 12px rgba(0,0,0,.2)}.message{margin-bottom:15px;padding:12px 16px;border-radius:18px;max-width:70%;word-wrap:break-word;box-shadow:0 2px 8px rgba(0,0,0,.1);position:relative;animation:messageSlide .3s ease-out;cursor:pointer;transition:all .2s ease}.message:hover{transform:translateY(-1px);box-shadow:0 4px 12px rgba(0,0,0,.15)}@keyframes messageSlide{from{opacity:0;transform:translateY(20px)}to{opacity:1;transform:translateY(0)}}.message.sent{background:linear-gradient(135deg,#3498db 0%,#2980b9 100%);color:#fff;margin-left:auto;border-bottom-right-radius:5px}.message.received{background:linear-gradient(135deg,#fff 0%,#f8f9fa 100%);color:#2c3e50;margin-right:auto;border:1px solid #e9ecef;border-bottom-left-radius:5px}.message.private{background:linear-gradient(135deg,#9b59b6 0%,#8e44ad 100%);color:#fff;border:2px solid #7d3c98}.message.system{background:linear-gradient(135deg,#17a2b8 0%,#138496 100%);color:#fff;text-align:center;margin:10px auto;font-size:13px;max-width:90%}.message-header{font-size:11px;opacity:.8;margin-bottom:4px;display:flex;justify-content:space-between;align-items:center}.message-reply{background:rgba(255,255,255,.2);border-left:3px solid rgba(255,255,255,.5);padding:6px 10px;margin-bottom:8px;border-radius:4px;font-size:11px;opacity:.9}.message.received .message-reply{background:rgba(0,0,0,.05);border-left-color:rgba(0,0,0,.2)}.message-text{font-size:14px;line-height:1.4}.emo{display:none;position:relative;bottom:50px;left:30px;width:320px;height:120px;background:linear-gradient(135deg,#fff 0%,#f8f9fa 100%);border:1px solid #e9ecef;border-radius:15px;padding:15px;box-shadow:0 10px 30px rgba(0,0,0,.15);z-index:1000;overflow-y:auto}.emo span{cursor:pointer;font-size:22px;margin:6px;display:inline-block;transition:transform .2s ease;padding:4px;border-radius:6px}.emo span:hover{transform:scale(1.3);background:rgba(52,152,219,.1)}.anonyme{height:40px;padding:0 16px;border-radius:20px;background:linear-gradient(135deg,#9b59b6 0%,#8e44ad 100%);border:none;color:#fff;font-weight:600;font-size:13px;cursor:pointer;transition:all .3s ease;display:flex;align-items:center;gap:6px}.anonyme:hover{background:linear-gradient(135deg,#8e44ad 0%,#7d3c98 100%);transform:translateY(-2px)}:root{--primary-color:#667eea;--primary-dark:#5a6fd8;--secondary-color:#764ba2;--accent-color:#f093fb;--text-primary:#2d3748;--text-secondary:#718096;--bg-primary:#fff;--bg-secondary:#f7fafc;--border-color:#e2e8f0}#connexion{position:fixed;top:50%;left:50%;transform:translate(-50%,-50%);background:var(--bg-primary);border-radius:24px;box-shadow:0 20px 40px rgba(0,0,0,.15);width:100%;max-width:420px;padding:40px;z-index:1000}.lui h3{color:var(--primary-color);font-weight:700;display:flex;align-items:center;justify-content:center;gap:12px;margin-bottom:30px;font-size:1.8rem}.form-group{margin-bottom:20px}.form-group label{display:block;color:var(--text-primary);font-weight:600;margin-bottom:8px;font-size:.9rem}.nom{width:100%;padding:14px 18px;border:2px solid var(--border-color);border-radius:12px;font-size:.95rem;background:var(--bg-secondary);transition:all .3s ease;outline:none}.nom:focus{border-color:var(--primary-color);box-shadow:0 0 0 3px rgba(102,126,234,.1)}.btn-primary{width:100%;padding:14px;background:linear-gradient(135deg,var(--primary-color) 0%,var(--secondary-color) 100%);color:#fff;border:none;border-radius:12px;font-size:1rem;font-weight:600;cursor:pointer;transition:all .3s ease;display:flex;align-items:center;justify-content:center;gap:8px}.btn-primary:hover{transform:translateY(-2px);box-shadow:0 8px 25px rgba(102,126,234,.4)}.notification{position:fixed;top:20px;right:20px;padding:12px 20px;border-radius:8px;color:#fff;font-size:13px;font-weight:600;z-index:9999;box-shadow:0 4px 12px rgba(0,0,0,.15);transform:translateX(400px);transition:all .4s ease}.notification.show{transform:translateX(0)}.notification.info{background:linear-gradient(135deg,#28a745 0%,#20c997 100%)}.notification.error{background:linear-gradient(135deg,#dc3545 0%,#e74c3c 100%)}#photoPreview{display:none;margin-bottom:10px;border-radius:10px;max-width:200px;box-shadow:0 2px 10px rgba(0,0,0,.1)}@media(max-width:768px){.autre{transform:translateX(-100%);width:50%;z-index:300}.autre.mobile-open{transform:translateX(0)}.sidebar{display:none;width:200px}.tous{left:0;width:100%}.entete{left:0;width:100%;padding:0 15px;height:60px}.entete h3{font-size:16px}.mobile-menu-btn{display:block}.chat-actions{gap:5px}.anonyme{height:35px;padding:0 12px;font-size:12px}.zone_chat{left:0;width:100%;top:60px;height:calc(100vh - 140px);padding:15px}.info{left:0;width:100%;padding:10px 15px;height:80px}.message-input-container{gap:8px;margin-bottom:5px}#message{height:40px;font-size:13px;padding:0 15px}.bas{height:40px;padding:0 12px;font-size:12px;gap:4px}.message{max-width:85%;padding:10px 14px;font-size:13px}.emo{width:calc(100% - 30px);left:15px;bottom:90px}#connexion{margin:20px;max-width:calc(100% - 40px);padding:30px 25px}.lui h3{font-size:1.5rem !important}.liste{padding:0 15px 15px}.user-item{padding:8px;margin:3px 0}.user-name{font-size:12px}.autre-header{padding:15px}.utilise{font-size:14px}.deconnexion{padding:5px 10px;font-size:10px}}@media(max-width:480px){.message{max-width:90%;padding:8px 12px}.bas{padding:0 8px}.bas span{display:none}.info{height:70px}.zone_chat{height:calc(100vh - 130px)}}.mobile-overlay{display:none;position:fixed;top:0;left:0;width:100%;height:100%;background:rgba(0,0,0,.5);z-index:250}.mobile-overlay.active{display:block}.private-chat-indicator{background:linear-gradient(135deg,#9b59b6 0%,#8e44ad 100%);color:#fff;padding:8px 15px;border-radius:20px;font-size:12px;margin-left:10px;display:none}.private-chat-indicator.active{display:inline-block}
     </style>
 </head>
 
 <body>
     <div id="connexion" style="display: block;">
         <div class="lui">
-            <h3 style="margin-bottom: 30px; color: var(--primary-color); font-size: 2rem; text-align: center;">
+            <h3>
                 <i class="fas fa-sign-in-alt"></i> Connexion
             </h3>
         </div>
         <div id="formConnexion" class="form-toggle active">
             <div class="form-group">
                 <label for="">Entrez votre prénom*</label>
-                <div class="input-wrapper">
-                    <input type="text" name="nom" class="nom" id="nom" placeholder="Brayan" required>
-                    <i class="fas fa-user input-icon"></i>
-                </div>
+                <input type="text" name="nom" class="nom" id="nom" placeholder="Brayan" required>
             </div>
             <div class="form-group">
                 <label for="">Entrez votre email*</label>
-                <div class="input-wrapper">
-                    <input type="email" name="email" class="nom" id="email" placeholder="brayan@gmail.com" required>
-                    <i class="fas fa-envelope input-icon"></i>
-                </div>
+                <input type="email" name="email" class="nom" id="email" placeholder="brayan@gmail.com" required>
             </div>
             <div class="form-group">
                 <label for="">Entrez votre mot de passe*</label>
-                <div class="input-wrapper">
-                    <input type="password" name="motdepasse" class="nom" id="motdepasse" placeholder="••••••••"
-                        required>
-                    <i class="fas fa-lock input-icon"></i>
-                </div>
+                <input type="password" name="motdepasse" class="nom" id="motdepasse" placeholder="••••••••" required>
             </div>
-            <button id="btnSeConnecter" class="btn btn-primary">
+            <button id="btnSeConnecter" class="btn-primary">
                 <i class="fas fa-sign-in-alt"></i>
                 Se connecter
             </button>
@@ -750,55 +38,60 @@
     </div>
 
     <div style="display:none;" id="letous">
-        <div class="autre">
-            <div class="encore">
-                <div>
-                    <h2 class="utilise">Utilisateur</h2>
-                    <p style="font-size: 12px; opacity: 0.8; margin-top: 5px;">BTS Niveau 2 - PERLE</p>
+        <div class="mobile-overlay" id="mobileOverlay"></div>
+
+        <div class="autre" id="sidebar">
+            <div class="autre-header">
+                <div class="encore">
+                    <div>
+                        <h2 class="utilise" id="currentUserName">Utilisateur</h2>
+                        <p style="font-size: 11px; opacity: 0.8; margin-top: 3px;">BTS Niveau 2 - PERLE</p>
+                    </div>
+                    <button class="deconnexion" id="deconnexion">
+                        <i class="fas fa-sign-out-alt"></i>
+                        <span>Déconnexion</span>
+                    </button>
                 </div>
-                <button class="deconnexion" id="deconnexion">
-                    <i class="fas fa-sign-out-alt"></i>
-                    Déconnexion
-                </button>
             </div>
 
             <div class="liste">
-                <strong>Utilisateurs connectés <span id="userCount">(1)</span></strong>
-                <div id="usersList" style="margin-top: 10px; font-size: 12px;">
-                    <!-- Liste des utilisateurs connectés -->
+                <strong>Utilisateurs connectés <span id="userCount">(0)</span></strong>
+                <div id="usersList">
                 </div>
             </div>
         </div>
-
+        
         <div class="sidebar"></div>
-
+        
         <div class="tous">
             <div class="entete">
-                <h3>
-                    <i class="fa-solid fa-comment"></i>
-                    Discussion générale
-                </h3>
-                <button class="anonyme" id="modeAnonyme">
-                    <i class="fas fa-user-secret"></i>
-                    Mode anonyme
-                </button>
-            </div>
-
-            <div class="zone_chat" id="zone_chat">
-                <img src="" id="photoPreview" style="display: none;">
-
-                <div class="typing-indicator" id="typingIndicator">
-                    <div class="typing-dots">
-                        <span></span>
-                        <span></span>
-                        <span></span>
+                <div style="display: flex; align-items: center;">
+                    <button class="mobile-menu-btn" id="mobileMenuBtn">
+                        <i class="fas fa-bars"></i>
+                    </button>
+                    <h3 id="chatTitle">
+                        <i class="fa-solid fa-comment"></i> 
+                        Discussion générale
+                    </h3>
+                    <div class="private-chat-indicator" id="privateChatIndicator">
+                        <i class="fas fa-lock"></i> Chat privé
                     </div>
                 </div>
-
+                <div class="chat-actions">
+                    <button class="anonyme" id="modeAnonyme">
+                        <i class="fas fa-user-secret"></i>
+                        <span>Mode anonyme</span>
+                    </button>
+                </div>
+            </div>
+            
+            <div class="zone_chat" id="zone_chat">
+                <img src="" id="photoPreview" style="display: none;">
+                
                 <div class="emo" id="emo">
                     <span>😂</span> <span>🤣</span> <span>😅</span>
-                    <span>😉</span> <span>😎</span> <span>😍</span>
-                    <span>🥰</span> <span>😘</span> <span>🤩</span>
+                    <span>😉</span> <span>😎</span> <span>😍</span> 
+                    <span>🥰</span> <span>😘</span> <span>🤩</span> 
                     <span>😥</span> <span>😴</span> <span>😪</span>
                     <span>🤐</span> <span>🙄</span> <span>🥱</span>
                     <span>😛</span> <span>☝️</span> <span>👏</span>
@@ -807,421 +100,34 @@
                     <span>⭐</span> <span>🎉</span> <span>🚀</span>
                 </div>
             </div>
-
+            
             <div class="info">
-                <input type="text" id="message" placeholder="Tapez votre message...">
-                <button id="envoi" class="bas">
-                    <i class="fas fa-paper-plane"></i>
-                    Envoyer
-                </button>
-                <button id="emoji" class="bas">
-                    <i class="fa-regular fa-face-laugh"></i>
-                    Emoji
-                </button>
-                <button id="image" class="bas">
-                    <i class="fa-solid fa-images"></i>
-                    Image
-                </button>
+                <div class="reply-indicator" id="replyIndicator">
+                    <span id="replyText">Réponse à...</span>
+                    <span class="reply-close" id="replyClose">×</span>
+                </div>
+                <div class="message-input-container">
+                    <input type="text" id="message" placeholder="Tapez votre message...">
+                    <button id="envoi" class="bas">
+                        <i class="fas fa-paper-plane"></i> 
+                        <span>Envoyer</span>
+                    </button>
+                    <button id="emoji" class="bas">
+                        <i class="fa-regular fa-face-laugh"></i> 
+                        <span>Emoji</span>
+                    </button>
+                    <button id="image" class="bas">
+                        <i class="fa-solid fa-images"></i> 
+                        <span>Image</span>
+                    </button>
+                </div>
                 <input type="file" id="camer" accept="image/*" style="display:none;">
             </div>
         </div>
     </div>
 
     <script type="module">
-        import { initializeApp } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-app.js";
-        import {
-            getFirestore, collection, addDoc, doc, getDoc, getDocs,
-            onSnapshot, query, orderBy, updateDoc, setDoc, limit
-        } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore.js";
-        import {
-            getAuth, signInWithEmailAndPassword, createUserWithEmailAndPassword,
-            onAuthStateChanged
-        } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-auth.js";
-
-        // Configuration Firebase
-        const firebaseConfig = {
-            apiKey: "AIzaSyAigx8KtDCEulSWjpu17fnYsrqK7C9o3R8",
-            authDomain: "petit-jobs-express.firebaseapp.com",
-            projectId: "petit-jobs-express",
-            storageBucket: "petit-jobs-express.appspot.com",
-            messagingSenderId: "446118780236",
-            appId: "1:446118780236:web:08c3a87d56bcd67399c3e9"
-        };
-
-        const app = initializeApp(firebaseConfig);
-        const db = getFirestore(app);
-        const auth = getAuth(app);
-
-        // Variables globales
-        let currentUser = null;
-        let isAnonymous = false;
-        let typingTimeout;
-
-        // Éléments DOM
-        const connexionDiv = document.getElementById('connexion');
-        const letousDiv = document.getElementById('letous');
-        const inscription = document.getElementById('btnSeConnecter');
-        const emoji = document.getElementById('emoji');
-        const envoie = document.getElementById('envoi');
-        const photoPreview = document.getElementById('photoPreview');
-        const camer = document.getElementById('camer');
-        const imageBtn = document.getElementById('image');
-        const zone_chat = document.getElementById('zone_chat');
-        const message = document.getElementById('message');
-        const emo = document.getElementById('emo');
-        const deconnexion = document.getElementById('deconnexion');
-        const modeAnonyme = document.getElementById('modeAnonyme');
-
-        // Fonction pour afficher les notifications
-        function showNotification(text, type = 'info') {
-            const existingNotif = document.querySelector('.notification');
-            if (existingNotif) {
-                existingNotif.remove();
-            }
-
-            const notif = document.createElement('div');
-            notif.className = `notification ${type}`;
-            notif.textContent = text;
-            document.body.appendChild(notif);
-
-            setTimeout(() => notif.classList.add('show'), 100);
-            setTimeout(() => {
-                notif.classList.remove('show');
-                setTimeout(() => notif.remove(), 400);
-            }, 4000);
-        }
-
-        // Fonction pour formater le timestamp
-        function formatTime(timestamp) {
-            const date = new Date(timestamp);
-            const now = new Date();
-            const diff = now - date;
-
-            if (diff < 60000) return 'À l\'instant';
-            if (diff < 3600000) return `${Math.floor(diff / 60000)} min`;
-            if (diff < 86400000) return date.toLocaleTimeString('fr-FR', { hour: '2-digit', minute: '2-digit' });
-            return date.toLocaleDateString('fr-FR', { day: '2-digit', month: '2-digit' });
-        }
-
-        // Fonction pour créer un message
-        function createMessageElement(messageData, isSent = false) {
-            const messageDiv = document.createElement('div');
-            messageDiv.className = `message ${isSent ? 'sent' : 'received'} message-enter`;
-
-            const messageInfo = document.createElement('div');
-            messageInfo.className = 'message-info';
-            messageInfo.textContent = `${messageData.auteur} • ${formatTime(messageData.timestamp)}`;
-            messageInfo.style.cursor = 'pointer';
-            const messageText = document.createElement('div');
-            messageText.className = 'message-text';
-            messageText.textContent = messageData.text;
-
-            messageDiv.appendChild(messageInfo);
-            messageDiv.appendChild(messageText);
-
-            return messageDiv;
-        }
-
-        function scrollToBottom() {
-            zone_chat.scrollTop = zone_chat.scrollHeight;
-        }
-
-        // Notification de bienvenue
-        setTimeout(() => {
-            showNotification("Bienvenue dans BTS Niveau 2 de la PERLE ❤️", "info");
-        }, 3000);
-
-        // Gestion de la connexion
-        inscription.addEventListener('click', async function () {
-            const nom = document.getElementById('nom').value.trim();
-            const email = document.getElementById('email').value.trim();
-            const motdepasse = document.getElementById('motdepasse').value;
-
-            if (!nom || !email || !motdepasse) {
-                showNotification('Veuillez remplir tous les champs', 'error');
-                return;
-            }
-
-            if (nom.length < 2) {
-                showNotification('Le nom doit contenir au moins 2 caractères', 'error');
-                return;
-            }
-
-            if (motdepasse.length < 6) {
-                showNotification('Le mot de passe doit contenir au moins 6 caractères', 'error');
-                return;
-            }
-
-            inscription.classList.add('loading');
-            inscription.disabled = true;
-
-            try {
-                await createUserWithEmailAndPassword(auth, email, motdepasse);
-                showNotification('Compte créé et connecté avec succès ! 💪', 'info');
-
-                // Sauvegarder les informations utilisateur
-                await setDoc(doc(db, "users", email), {
-                    nom: nom,
-                    email: email,
-                    dateCreation: Date.now(),
-                    lastActive: Date.now()
-                });
-            } catch (error) {
-                console.error('Erreur lors de la création du compte:', error);
-            }
-
-            currentUser = { nom, email };
-            document.querySelector('.utilise').textContent = nom;
-            connexionDiv.style.display = 'none';
-            letousDiv.style.display = 'block';
-            loadMessages();
-
-
-            if (error.code === 'auth/email-already-in-use') {
-                errorMessage = 'Cette adresse email est déjà utilisée';
-            } else if (error.code === 'auth/weak-password') {
-                errorMessage = 'Le mot de passe est trop faible';
-            } else if (error.code === 'auth/invalid-email') {
-                errorMessage = 'Adresse email invalide';
-            }
-
-            showNotification(errorMessage, 'error');
-        }
-        );
-
-        deconnexion.addEventListener('click', async function () {
-            try {
-                await auth.signOut();
-                showNotification('Vous avez été déconnecté avec succès ! 👋', 'info');
-                connexionDiv.style.display = 'block';
-                letousDiv.style.display = 'none';
-                zone_chat.innerHTML = '';
-                currentUser = null;
-            } catch (error) {
-                console.error('Erreur lors de la déconnexion:', error);
-                showNotification('Erreur lors de la déconnexion', 'error');
-            }
-        });
-
-        // Gestion du mode anonyme
-        modeAnonyme.addEventListener('click', function () {
-            isAnonymous = !isAnonymous;
-            if (isAnonymous) {
-                modeAnonyme.innerHTML = '<i class="fas fa-user"></i> Mode normal';
-                modeAnonyme.style.background = 'linear-gradient(135deg, #e74c3c 0%, #c0392b 100%)';
-                showNotification('Mode anonyme activé 🥸', 'info');
-            } else {
-                modeAnonyme.innerHTML = '<i class="fas fa-user-secret"></i> Mode anonyme';
-                modeAnonyme.style.background = 'linear-gradient(135deg, #9b59b6 0%, #8e44ad 100%)';
-                showNotification('Mode normal activé 👤', 'info');
-            }
-        });
-
-        // Gestion des images
-        imageBtn.addEventListener('click', () => camer.click());
-
-        camer.addEventListener('change', function (e) {
-            const file = e.target.files[0];
-            if (!file) return;
-
-            const reader = new FileReader();
-            reader.onload = function () {
-                photoPreview.src = reader.result;
-                photoPreview.style.display = 'block';
-                showNotification('Image sélectionnée ! 📸', 'info');
-            };
-            reader.readAsDataURL(file);
-        });
-
-        // Fonction d'envoi de message
-        async function envoyerMessage() {
-            const messageText = message.value.trim();
-            const hasImage = photoPreview.style.display !== 'none';
-
-            if (!messageText && !hasImage) {
-                showNotification('Veuillez entrer un message ou sélectionner une image', 'error');
-                return;
-            }
-
-            if (!currentUser) {
-                showNotification('Veuillez vous connecter d\'abord', 'error');
-                return;
-            }
-
-            try {
-                const messageData = {
-                    auteur: isAnonymous ? 'Anonyme' : currentUser.nom,
-                    text: messageText,
-                    timestamp: Date.now(),
-                    userId: auth.currentUser?.uid || 'anonymous',
-                    isAnonymous: isAnonymous
-                };
-
-                if (hasImage) {
-                    messageData.image = photoPreview.src;
-                }
-
-                // Ajouter le message à Firestore
-                await addDoc(collection(db, "messages"), messageData);
-
-                // Réinitialiser les champs
-                message.value = '';
-                photoPreview.style.display = 'none';
-                photoPreview.src = '';
-
-                showNotification('Message envoyé ! ✅', 'info');
-
-            } catch (error) {
-                console.error("Erreur envoi message:", error);
-                showNotification("Erreur lors de l'envoi du message", 'error');
-            }
-        }
-
-        // Fonction pour charger les messages
-        function loadMessages() {
-            const messagesQuery = query(
-                collection(db, "messages"),
-                orderBy("timestamp", "asc"),
-                limit(50)
-            );
-
-            onSnapshot(messagesQuery, (snapshot) => {
-                const existingMessages = zone_chat.querySelectorAll('.message');
-                const existingIds = new Set();
-
-                existingMessages.forEach(msg => {
-                    if (msg.dataset.messageId) {
-                        existingIds.add(msg.dataset.messageId);
-                    }
-                });
-
-                snapshot.docChanges().forEach((change) => {
-                    if (change.type === "added") {
-                        const messageData = change.doc.data();
-                        const messageId = change.doc.id;
-
-                        if (!existingIds.has(messageId)) {
-                            const isSent = auth.currentUser && messageData.userId === auth.currentUser.uid;
-                            const messageElement = createMessageElement(messageData, isSent);
-                            messageElement.dataset.messageId = messageId;
-
-                            const controlElements = zone_chat.querySelectorAll('#photoPreview, .emo, .typing-indicator');
-                            if (controlElements.length > 0) {
-                                zone_chat.insertBefore(messageElement, controlElements[0]);
-                            } else {
-                                zone_chat.appendChild(messageElement);
-                            }
-
-                            scrollToBottom();
-                        }
-                    }
-                });
-            });
-        }
-
-        // Gestion des événements de clic
-        envoie.addEventListener('click', envoyerMessage);
-
-        // Gestion des emojis
-        emoji.addEventListener('click', function () {
-            emo.style.display = emo.style.display === 'block' ? 'none' : 'block';
-        });
-
-        emo.querySelectorAll('span').forEach(span => {
-            span.addEventListener('click', function () {
-                message.value += span.textContent;
-                emo.style.display = 'none';
-                message.focus();
-            });
-        });
-
-        // Fermer les emojis en cliquant ailleurs
-        document.addEventListener('click', function (e) {
-            if (!e.target.closest('#emoji') && !e.target.closest('.emo')) {
-                emo.style.display = 'none';
-            }
-        });
-
-        // Gestion de la touche Entrée
-        message.addEventListener('keypress', function (e) {
-            if (e.key === 'Enter' && !e.shiftKey) {
-                e.preventDefault();
-                envoyerMessage();
-            }
-        });
-
-        // Simuler l'indicateur de frappe
-        message.addEventListener('input', function () {
-            const typingIndicator = document.getElementById('typingIndicator');
-
-            if (this.value.trim()) {
-                typingIndicator.style.display = 'block';
-                scrollToBottom();
-
-                clearTimeout(typingTimeout);
-                typingTimeout = setTimeout(() => {
-                    typingIndicator.style.display = 'none';
-                }, 1000);
-            } else {
-                typingIndicator.style.display = 'none';
-            }
-        });
-
-        // Mise à jour du compteur d'utilisateurs (simulation)
-        function updateUserCount() {
-            const userCount = document.getElementById('userCount');
-            const randomCount = Math.floor(Math.random() * 10) + 1;
-            userCount.textContent = `(${randomCount})`;
-        }
-
-        // Mettre à jour le compteur toutes les 30 secondes
-        setInterval(updateUserCount, 30000);
-        updateUserCount();
-
-        // Gestion de l'état d'authentification
-        onAuthStateChanged(auth, (user) => {
-            if (user && currentUser) {
-                // Utilisateur connecté
-                console.log("Utilisateur connecté:", user.email);
-            } else if (!user) {
-                // Utilisateur déconnecté
-                console.log("Utilisateur déconnecté");
-            }
-        });
-
-        // Animation de chargement initial
-        window.addEventListener('load', function () {
-            document.body.style.opacity = '0';
-            setTimeout(() => {
-                document.body.style.transition = 'opacity 0.5s ease';
-                document.body.style.opacity = '1';
-            }, 100);
-        });
-
-        // Messages automatiques de bienvenue
-        setTimeout(() => {
-            if (zone_chat.children.length <= 3) { // Si peu de messages
-                const welcomeMessages = [
-                    "👋 Bienvenue dans le chat BTS Niveau 2 !",
-                    "💬 N'hésitez pas à poser vos questions",
-                    "🎓 Bon apprentissage à tous !"
-                ];
-
-                welcomeMessages.forEach((text, index) => {
-                    setTimeout(() => {
-                        const welcomeMsg = createMessageElement({
-                            auteur: "Système",
-                            text: text,
-                            timestamp: Date.now()
-                        }, false);
-                        welcomeMsg.style.background = 'linear-gradient(135deg, #17a2b8 0%, #138496 100%)';
-                        welcomeMsg.style.color = 'white';
-                        zone_chat.appendChild(welcomeMsg);
-                        scrollToBottom();
-                    }, index * 2000);
-                });
-            }
-        }, 5000);
+       const _0xf03db2=_0x12c7;(function(_0x2116db,_0x38d8e4){const _0x59ba1b=_0x12c7,_0x40083c=_0x2116db();while(!![]){try{const _0x4862de=parseInt(_0x59ba1b(0x147))/0x1*(-parseInt(_0x59ba1b(0x14d))/0x2)+-parseInt(_0x59ba1b(0x1b8))/0x3+parseInt(_0x59ba1b(0x1cf))/0x4+parseInt(_0x59ba1b(0x1c1))/0x5+-parseInt(_0x59ba1b(0x181))/0x6*(-parseInt(_0x59ba1b(0x1d2))/0x7)+parseInt(_0x59ba1b(0x175))/0x8*(-parseInt(_0x59ba1b(0x1bb))/0x9)+parseInt(_0x59ba1b(0x1e2))/0xa;if(_0x4862de===_0x38d8e4)break;else _0x40083c['push'](_0x40083c['shift']());}catch(_0x6c4a09){_0x40083c['push'](_0x40083c['shift']());}}}(_0x3357,0xd08c4));import{initializeApp}from'https://www.gstatic.com/firebasejs/10.12.2/firebase-app.js';import{getFirestore,collection,addDoc,doc,getDoc,getDocs,onSnapshot,query,orderBy,updateDoc,setDoc,limit,where}from'https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore.js';import{getAuth,signInWithEmailAndPassword,createUserWithEmailAndPassword,onAuthStateChanged}from'https://www.gstatic.com/firebasejs/10.12.2/firebase-auth.js';const firebaseConfig={'apiKey':_0xf03db2(0x146),'authDomain':_0xf03db2(0x1c4),'projectId':_0xf03db2(0x1b3),'storageBucket':_0xf03db2(0x1a5),'messagingSenderId':_0xf03db2(0x153),'appId':_0xf03db2(0x186)},app=initializeApp(firebaseConfig),db=getFirestore(app),auth=getAuth(app);let currentUser=null,isAnonymous=![],connectedUsers=new Map(),currentPrivateChat=null,replyingTo=null,privateChatNotifications=new Map();const connexionDiv=document[_0xf03db2(0x19f)](_0xf03db2(0x1b6)),letousDiv=document[_0xf03db2(0x19f)](_0xf03db2(0x164)),inscription=document[_0xf03db2(0x19f)](_0xf03db2(0x1bc)),zone_chat=document[_0xf03db2(0x19f)](_0xf03db2(0x195)),message=document[_0xf03db2(0x19f)](_0xf03db2(0x155)),sidebar=document['getElementById']('sidebar'),mobileOverlay=document['getElementById']('mobileOverlay'),mobileMenuBtn=document['getElementById'](_0xf03db2(0x1ee));function showNotification(_0x2e6097,_0x94e14b=_0xf03db2(0x19b)){const _0x5cb7a3=_0xf03db2,_0x4d9392=document[_0x5cb7a3(0x170)](_0x5cb7a3(0x1d4));if(_0x4d9392)_0x4d9392[_0x5cb7a3(0x1de)]();const _0x586344=document[_0x5cb7a3(0x15a)]('div');_0x586344[_0x5cb7a3(0x1dc)]=_0x5cb7a3(0x1b4)+_0x94e14b,_0x586344['textContent']=_0x2e6097,document[_0x5cb7a3(0x16a)][_0x5cb7a3(0x14c)](_0x586344),setTimeout(()=>_0x586344[_0x5cb7a3(0x16e)][_0x5cb7a3(0x16d)]('show'),0x64),setTimeout(()=>{const _0x2eed7c=_0x5cb7a3;_0x586344[_0x2eed7c(0x16e)][_0x2eed7c(0x1de)](_0x2eed7c(0x1ad)),setTimeout(()=>_0x586344[_0x2eed7c(0x1de)](),0x190);},0xfa0);}function formatTime(_0x4717ab){const _0x4a7a63=_0xf03db2,_0x4ff445=new Date(_0x4717ab),_0x5623e6=new Date(),_0x289c38=_0x5623e6-_0x4ff445;if(_0x289c38<0xea60)return'À\x20l\x27instant';if(_0x289c38<0x36ee80)return Math['floor'](_0x289c38/0xea60)+'\x20min';if(_0x289c38<0x5265c00)return _0x4ff445[_0x4a7a63(0x18f)](_0x4a7a63(0x1be),{'hour':'2-digit','minute':_0x4a7a63(0x1dd)});return _0x4ff445[_0x4a7a63(0x1b9)](_0x4a7a63(0x1be),{'day':'2-digit','month':'2-digit'});}function scrollToBottom(){const _0x1aa110=_0xf03db2;zone_chat[_0x1aa110(0x1ef)]=zone_chat[_0x1aa110(0x13f)];}function _0x3357(){const _0x130640=['background','email','src','error','\x20a\x20rejoint\x20le\x20chat\x20👋','Erreur\x20lors\x20de\x20l\x27envoi\x20du\x20message','className','2-digit','remove','uid','</div>','Connexion...','2913780CjVkLj','textContent','Vous\x20avez\x20été\x20déconnecté\x20avec\x20succès\x20!\x20👋','innerWidth','Image\x20sélectionnée\x20!\x20📸','\x20private','shiftKey','timestamp','Réponse\x20à\x20','messageId','\x20message-enter','motdepasse','mobileMenuBtn','scrollTop','userCount','lastSeen','keys','readAsDataURL','click','style','scrollHeight','Erreur\x20lors\x20de\x20la\x20connexion','Veuillez\x20remplir\x20tous\x20les\x20champs','<i\x20class=\x22fas\x20fa-lock\x22></i>\x20Chat\x20avec\x20','👋\x20Bienvenue\x20!\x20Cliquez\x20sur\x20un\x20utilisateur\x20pour\x20discuter\x20en\x20privé','<div\x20class=\x22message-text\x22>','auth/wrong-password','AIzaSyAigx8KtDCEulSWjpu17fnYsrqK7C9o3R8','427213tFrOhG','onload','Erreur\x20lors\x20de\x20la\x20déconnexion','Mode\x20anonyme\x20activé\x20🥸','#photoPreview,\x20.emo','appendChild','2vhYXAT','replyText','\x20démarré\x20🔒','key','Veuillez\x20vous\x20connecter\x20d\x27abord','Compte\x20créé\x20et\x20connecté\x20avec\x20succès\x20!\x20💪','446118780236','substring','message','modeAnonyme','span','Erreur\x20lors\x20de\x20la\x20déconnexion:','trim','createElement','users','Mode\x20normal\x20activé\x20👤','photoPreview',':</strong>\x20','auth/email-already-in-use','type','nom','dblclick','userId','letous','Le\x20nom\x20doit\x20contenir\x20au\x20moins\x202\x20caractères','anonymous','Anonyme','.emo','auth/weak-password','body','added','none','add','classList','auth/invalid-email','querySelector','isPrivate','active','now','<div\x20class=\x22message-reply\x22>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<strong>','8GxDPtj','docChanges','display','currentUserName','deconnexion','image','</div>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20','value','Veuillez\x20entrer\x20un\x20message\x20ou\x20sélectionner\x20une\x20image','get','linear-gradient(135deg,\x20#e74c3c\x200%,\x20#c0392b\x20100%)','innerHTML','1007778jOoKoY','messages','<div\x20class=\x22message-header\x22>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<span>','\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20</div>','querySelectorAll','1:446118780236:web:08c3a87d56bcd67399c3e9','text','privateChatIndicator','received','Le\x20mot\x20de\x20passe\x20est\x20trop\x20faible','keypress','code','has','Connexion\x20réussie\x20!\x20🎉','toLocaleTimeString','\x20💌','emo','block','Nouveau\x20message\x20privé\x20de\x20','<i\x20class=\x22fa-solid\x20fa-comment\x22></i>\x20Discussion\x20générale','zone_chat','data','Cette\x20adresse\x20email\x20est\x20déjà\x20utilisée','replyTo','clear','sent','info','dataset','flex','set','getElementById','envoi','target','Erreur\x20envoi\x20message:','forEach','#emoji','petit-jobs-express.appspot.com','<img\x20src=\x22','chatTitle','</span>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20</div>','auteur','disabled','connectedUsers','insertBefore','show','toggle','replyIndicator','linear-gradient(135deg,\x20#9b59b6\x200%,\x20#8e44ad\x20100%)','currentUser','length','petit-jobs-express','notification\x20','files','connexion','camer','532872JGadnb','toLocaleDateString','.message','3855303CsUsjh','btnSeConnecter','addEventListener','fr-FR','author','<i\x20class=\x22fas\x20fa-user\x22></i>\x20<span>Mode\x20normal</span>','5916320AUIcaW','signOut','closest','petit-jobs-express.firebaseapp.com','Bienvenue\x20dans\x20BTS\x20Niveau\x202\x20de\x20la\x20PERLE\x20❤️','focus','<i\x20class=\x22fas\x20fa-user-secret\x22></i>\x20<span>Mode\x20anonyme</span>','isSystem','Adresse\x20email\x20invalide','div','asc','privateMessages','mobile-open','...','307392JFykWO','recipientId','result','14eoeBea','doc','.notification','preventDefault'];_0x3357=function(){return _0x130640;};return _0x3357();}mobileMenuBtn[_0xf03db2(0x1bd)](_0xf03db2(0x13d),()=>{const _0x42fe1d=_0xf03db2;sidebar['classList']['toggle'](_0x42fe1d(0x1cd)),mobileOverlay[_0x42fe1d(0x16e)][_0x42fe1d(0x1ae)](_0x42fe1d(0x172));}),mobileOverlay['addEventListener'](_0xf03db2(0x13d),()=>{const _0x3e3e05=_0xf03db2;sidebar['classList']['remove'](_0x3e3e05(0x1cd)),mobileOverlay[_0x3e3e05(0x16e)]['remove']('active');});function createMessageElement(_0x2d2a47,_0x3f6acb=![]){const _0x2f8204=_0xf03db2,_0x3b2590=document['createElement'](_0x2f8204(0x1ca));let _0x94cf60='message\x20'+(_0x3f6acb?_0x2f8204(0x19a):_0x2f8204(0x189))+_0x2f8204(0x1ec);_0x2d2a47[_0x2f8204(0x171)]&&(_0x94cf60+=_0x2f8204(0x1e7));_0x2d2a47[_0x2f8204(0x1c8)]&&(_0x94cf60+='\x20system');_0x3b2590[_0x2f8204(0x1dc)]=_0x94cf60,_0x3b2590[_0x2f8204(0x19c)][_0x2f8204(0x1eb)]=_0x2d2a47['id']||Date['now'](),_0x3b2590[_0x2f8204(0x19c)][_0x2f8204(0x1bf)]=_0x2d2a47[_0x2f8204(0x1a9)];let _0x7b8093='';return!_0x2d2a47['isSystem']&&(_0x7b8093+=_0x2f8204(0x183)+_0x2d2a47[_0x2f8204(0x1a9)]+'</span>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<span>'+formatTime(_0x2d2a47['timestamp'])+_0x2f8204(0x1a8)),_0x2d2a47[_0x2f8204(0x198)]&&(_0x7b8093+=_0x2f8204(0x174)+_0x2d2a47[_0x2f8204(0x198)]['author']+_0x2f8204(0x15e)+_0x2d2a47['replyTo'][_0x2f8204(0x187)][_0x2f8204(0x154)](0x0,0x32)+(_0x2d2a47[_0x2f8204(0x198)][_0x2f8204(0x187)][_0x2f8204(0x1b2)]>0x32?_0x2f8204(0x1ce):'')+_0x2f8204(0x184)),_0x7b8093+=_0x2f8204(0x144)+_0x2d2a47[_0x2f8204(0x187)]+_0x2f8204(0x1e0),_0x2d2a47['image']&&(_0x7b8093+=_0x2f8204(0x1a6)+_0x2d2a47['image']+'\x22\x20style=\x22max-width:\x20100%;\x20border-radius:\x208px;\x20margin-top:\x208px;\x22>'),_0x3b2590[_0x2f8204(0x180)]=_0x7b8093,!_0x2d2a47[_0x2f8204(0x1c8)]&&_0x3b2590['addEventListener']('click',()=>{!_0x3f6acb&&replyToMessage(_0x2d2a47);}),_0x3b2590;}function replyToMessage(_0x21afcf){const _0x71b700=_0xf03db2;replyingTo={'id':_0x21afcf['id'],'author':_0x21afcf['auteur'],'text':_0x21afcf[_0x71b700(0x187)]};const _0x51ba03=document[_0x71b700(0x19f)](_0x71b700(0x1af)),_0x22d497=document['getElementById'](_0x71b700(0x14e));_0x22d497['textContent']=_0x71b700(0x1ea)+_0x21afcf[_0x71b700(0x1a9)]+':\x20'+_0x21afcf[_0x71b700(0x187)][_0x71b700(0x154)](0x0,0x1e)+(_0x21afcf[_0x71b700(0x187)][_0x71b700(0x1b2)]>0x1e?_0x71b700(0x1ce):''),_0x51ba03['style'][_0x71b700(0x177)]='block',message[_0x71b700(0x1c6)]();}document[_0xf03db2(0x19f)]('replyClose')[_0xf03db2(0x1bd)](_0xf03db2(0x13d),()=>{const _0x293fe5=_0xf03db2;replyingTo=null,document['getElementById'](_0x293fe5(0x1af))[_0x293fe5(0x13e)][_0x293fe5(0x177)]=_0x293fe5(0x16c);});function updateUsersList(){const _0x2aff17=_0xf03db2,_0x4b0d1d=document[_0x2aff17(0x19f)]('usersList'),_0x46a1a5=document['getElementById'](_0x2aff17(0x139));_0x4b0d1d[_0x2aff17(0x180)]='';let _0x3fe368=0x0;connectedUsers[_0x2aff17(0x1a3)]((_0x1bf3e8,_0x40a5ea)=>{const _0x568a1c=_0x2aff17;if(_0x40a5ea===currentUser?.[_0x568a1c(0x1d7)])return;_0x3fe368++;const _0x233c84=document[_0x568a1c(0x15a)]('div');_0x233c84[_0x568a1c(0x1dc)]='user-item',_0x233c84[_0x568a1c(0x19c)][_0x568a1c(0x163)]=_0x40a5ea;const _0xdf45c4=privateChatNotifications[_0x568a1c(0x17e)](_0x40a5ea)||0x0;_0x233c84[_0x568a1c(0x180)]='\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<div\x20class=\x22user-info\x22>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<div\x20class=\x22user-status\x22></div>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<div\x20class=\x22user-name\x22>'+_0x1bf3e8[_0x568a1c(0x161)]+'</div>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20</div>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<div\x20class=\x22notification-badge\x22\x20style=\x22display:\x20'+(_0xdf45c4>0x0?_0x568a1c(0x19d):'none')+'\x22>'+_0xdf45c4+_0x568a1c(0x17b),_0x233c84[_0x568a1c(0x1bd)]('click',()=>{const _0x117ea4=_0x568a1c;startPrivateChat(_0x40a5ea,_0x1bf3e8[_0x117ea4(0x161)]),privateChatNotifications[_0x117ea4(0x19e)](_0x40a5ea,0x0),updateUsersList(),window[_0x117ea4(0x1e5)]<=0x300&&(sidebar[_0x117ea4(0x16e)][_0x117ea4(0x1de)](_0x117ea4(0x1cd)),mobileOverlay['classList'][_0x117ea4(0x1de)](_0x117ea4(0x172)));}),_0x4b0d1d[_0x568a1c(0x14c)](_0x233c84);}),_0x46a1a5[_0x2aff17(0x1e3)]='('+(_0x3fe368+0x1)+')';}function startPrivateChat(_0x58a8dc,_0x12ba73){const _0xd05dd1=_0xf03db2;currentPrivateChat=_0x58a8dc,document[_0xd05dd1(0x19f)](_0xd05dd1(0x1a7))['innerHTML']=_0xd05dd1(0x142)+_0x12ba73,document[_0xd05dd1(0x19f)](_0xd05dd1(0x188))[_0xd05dd1(0x16e)]['add'](_0xd05dd1(0x172));const _0x191744=zone_chat[_0xd05dd1(0x185)](_0xd05dd1(0x1ba));_0x191744['forEach'](_0x27436e=>_0x27436e[_0xd05dd1(0x1de)]()),loadPrivateMessages(_0x58a8dc),showNotification('Chat\x20privé\x20avec\x20'+_0x12ba73+_0xd05dd1(0x14f),_0xd05dd1(0x19b));}function backToGeneralChat(){const _0x36647f=_0xf03db2;currentPrivateChat=null,document[_0x36647f(0x19f)](_0x36647f(0x1a7))[_0x36647f(0x180)]=_0x36647f(0x194),document['getElementById']('privateChatIndicator')[_0x36647f(0x16e)]['remove']('active');const _0xe123f7=zone_chat[_0x36647f(0x185)](_0x36647f(0x1ba));_0xe123f7['forEach'](_0x1c5648=>_0x1c5648[_0x36647f(0x1de)]()),loadMessages(),showNotification('Retour\x20au\x20chat\x20général\x20💬',_0x36647f(0x19b));}function _0x12c7(_0x506a80,_0x5f41a1){const _0x3357a7=_0x3357();return _0x12c7=function(_0x12c717,_0x30e2ce){_0x12c717=_0x12c717-0x139;let _0x51c9db=_0x3357a7[_0x12c717];return _0x51c9db;},_0x12c7(_0x506a80,_0x5f41a1);}document['getElementById'](_0xf03db2(0x1a7))[_0xf03db2(0x1bd)](_0xf03db2(0x162),()=>{currentPrivateChat&&backToGeneralChat();});async function envoyerMessage(){const _0x247bcd=_0xf03db2,_0x540043=message[_0x247bcd(0x17c)][_0x247bcd(0x159)](),_0x1914a9=document['getElementById'](_0x247bcd(0x15d))[_0x247bcd(0x13e)][_0x247bcd(0x177)]!==_0x247bcd(0x16c);if(!_0x540043&&!_0x1914a9){showNotification(_0x247bcd(0x17d),_0x247bcd(0x1d9));return;}if(!currentUser){showNotification(_0x247bcd(0x151),_0x247bcd(0x1d9));return;}try{const _0x5257c4={'auteur':isAnonymous?_0x247bcd(0x167):currentUser['nom'],'text':_0x540043,'timestamp':Date[_0x247bcd(0x173)](),'userId':auth[_0x247bcd(0x1b1)]?.['uid']||_0x247bcd(0x166),'isAnonymous':isAnonymous,'isPrivate':!!currentPrivateChat,'recipientId':currentPrivateChat||null};_0x1914a9&&(_0x5257c4['image']=document[_0x247bcd(0x19f)](_0x247bcd(0x15d))[_0x247bcd(0x1d8)]);replyingTo&&(_0x5257c4[_0x247bcd(0x198)]=replyingTo);const _0x5011c5=currentPrivateChat?_0x247bcd(0x1cc):'messages';await addDoc(collection(db,_0x5011c5),_0x5257c4),message[_0x247bcd(0x17c)]='',document[_0x247bcd(0x19f)]('photoPreview')[_0x247bcd(0x13e)][_0x247bcd(0x177)]=_0x247bcd(0x16c),document[_0x247bcd(0x19f)]('photoPreview')['src']='',replyingTo=null,document[_0x247bcd(0x19f)](_0x247bcd(0x1af))['style']['display']=_0x247bcd(0x16c),showNotification('Message\x20envoyé\x20!\x20✅',_0x247bcd(0x19b));}catch(_0x2784ee){console[_0x247bcd(0x1d9)](_0x247bcd(0x1a2),_0x2784ee),showNotification(_0x247bcd(0x1db),'error');}}function loadMessages(){const _0x13fb50=_0xf03db2,_0x42763f=query(collection(db,_0x13fb50(0x182)),orderBy('timestamp',_0x13fb50(0x1cb)),limit(0x32));onSnapshot(_0x42763f,_0x2c25ab=>{const _0x430df2=_0x13fb50;_0x2c25ab[_0x430df2(0x176)]()[_0x430df2(0x1a3)](_0x166866=>{const _0x230dc1=_0x430df2;if(_0x166866[_0x230dc1(0x160)]===_0x230dc1(0x16b)&&!currentPrivateChat){const _0x1fc375={..._0x166866['doc'][_0x230dc1(0x196)](),'id':_0x166866[_0x230dc1(0x1d3)]['id']};if(_0x1fc375[_0x230dc1(0x171)])return;const _0x56bfb2=auth['currentUser']&&_0x1fc375[_0x230dc1(0x163)]===auth[_0x230dc1(0x1b1)][_0x230dc1(0x1df)],_0x14bfea=createMessageElement(_0x1fc375,_0x56bfb2),_0x33c8f6=zone_chat['querySelectorAll']('#photoPreview,\x20.emo');_0x33c8f6[_0x230dc1(0x1b2)]>0x0?zone_chat[_0x230dc1(0x1ac)](_0x14bfea,_0x33c8f6[0x0]):zone_chat[_0x230dc1(0x14c)](_0x14bfea),scrollToBottom();}});});}function loadPrivateMessages(_0x1413e7){const _0x2233ce=_0xf03db2,_0x378adb=query(collection(db,_0x2233ce(0x1cc)),orderBy(_0x2233ce(0x1e9),_0x2233ce(0x1cb)),limit(0x32));onSnapshot(_0x378adb,_0x2054d3=>{const _0x27f7a8=_0x2233ce,_0x38524a=zone_chat[_0x27f7a8(0x185)](_0x27f7a8(0x1ba));_0x38524a[_0x27f7a8(0x1a3)](_0x5381ba=>_0x5381ba['remove']()),_0x2054d3[_0x27f7a8(0x1a3)](_0x1bc91a=>{const _0xc905b8=_0x27f7a8,_0x449812={..._0x1bc91a[_0xc905b8(0x196)](),'id':_0x1bc91a['id']};if(_0x449812['userId']===auth['currentUser'][_0xc905b8(0x1df)]&&_0x449812[_0xc905b8(0x1d0)]===_0x1413e7||_0x449812[_0xc905b8(0x163)]===_0x1413e7&&_0x449812[_0xc905b8(0x1d0)]===auth[_0xc905b8(0x1b1)][_0xc905b8(0x1df)]){const _0xc8db6=_0x449812[_0xc905b8(0x163)]===auth[_0xc905b8(0x1b1)][_0xc905b8(0x1df)],_0x30ed15=createMessageElement(_0x449812,_0xc8db6),_0x3ca06e=zone_chat['querySelectorAll'](_0xc905b8(0x14b));_0x3ca06e[_0xc905b8(0x1b2)]>0x0?zone_chat[_0xc905b8(0x1ac)](_0x30ed15,_0x3ca06e[0x0]):zone_chat[_0xc905b8(0x14c)](_0x30ed15);}}),scrollToBottom();}),onSnapshot(query(collection(db,_0x2233ce(0x1cc)),orderBy(_0x2233ce(0x1e9),'asc')),_0x3e97e4=>{const _0x5389fa=_0x2233ce;_0x3e97e4['docChanges']()[_0x5389fa(0x1a3)](_0x1944a7=>{const _0x538bcb=_0x5389fa;if(_0x1944a7[_0x538bcb(0x160)]==='added'){const _0x464b40=_0x1944a7[_0x538bcb(0x1d3)][_0x538bcb(0x196)]();if(_0x464b40[_0x538bcb(0x1d0)]===auth[_0x538bcb(0x1b1)][_0x538bcb(0x1df)]&&_0x464b40[_0x538bcb(0x163)]!==auth[_0x538bcb(0x1b1)]['uid']&&currentPrivateChat!==_0x464b40[_0x538bcb(0x163)]){const _0x2160a3=privateChatNotifications[_0x538bcb(0x17e)](_0x464b40['userId'])||0x0;privateChatNotifications['set'](_0x464b40[_0x538bcb(0x163)],_0x2160a3+0x1),updateUsersList(),showNotification(_0x538bcb(0x193)+_0x464b40[_0x538bcb(0x1a9)]+_0x538bcb(0x190),'info');}}});});}function manageConnectedUsers(){const _0x242d3c=_0xf03db2;if(!currentUser)return;const _0x3a37c5=doc(db,_0x242d3c(0x1ab),currentUser[_0x242d3c(0x1d7)]);setDoc(_0x3a37c5,{'nom':currentUser[_0x242d3c(0x161)],'email':currentUser[_0x242d3c(0x1d7)],'lastSeen':Date[_0x242d3c(0x173)](),'isOnline':!![]}),onSnapshot(collection(db,_0x242d3c(0x1ab)),_0x595d95=>{const _0x195965=_0x242d3c,_0xbfb0cb=new Set(connectedUsers[_0x195965(0x13b)]());connectedUsers[_0x195965(0x199)](),_0x595d95[_0x195965(0x1a3)](_0x99681b=>{const _0x19f4d5=_0x195965,_0x7eb2c7=_0x99681b['data'](),_0x33e3f7=_0x99681b['id'];Date[_0x19f4d5(0x173)]()-_0x7eb2c7[_0x19f4d5(0x13a)]<0x7530&&(connectedUsers[_0x19f4d5(0x19e)](_0x33e3f7,_0x7eb2c7),!_0xbfb0cb[_0x19f4d5(0x18d)](_0x33e3f7)&&_0x33e3f7!==currentUser['email']&&addSystemMessage(_0x7eb2c7[_0x19f4d5(0x161)]+_0x19f4d5(0x1da)));}),updateUsersList();}),setInterval(()=>{const _0x2ad94e=_0x242d3c;currentUser&&updateDoc(doc(db,'connectedUsers',currentUser[_0x2ad94e(0x1d7)]),{'lastSeen':Date[_0x2ad94e(0x173)]()});},0x3a98);}function addSystemMessage(_0x2b7adb){const _0x27c435=_0xf03db2;if(currentPrivateChat)return;const _0x2e96ce={'text':_0x2b7adb,'timestamp':Date['now'](),'isSystem':!![],'auteur':'Système'},_0xc13e37=createMessageElement(_0x2e96ce,![]),_0x578c3a=zone_chat[_0x27c435(0x185)]('#photoPreview,\x20.emo');_0x578c3a[_0x27c435(0x1b2)]>0x0?zone_chat[_0x27c435(0x1ac)](_0xc13e37,_0x578c3a[0x0]):zone_chat['appendChild'](_0xc13e37),scrollToBottom();}inscription[_0xf03db2(0x1bd)](_0xf03db2(0x13d),async function(){const _0x16f42d=_0xf03db2,_0x22dc8b=document[_0x16f42d(0x19f)]('nom')['value'][_0x16f42d(0x159)](),_0x2ff185=document['getElementById'](_0x16f42d(0x1d7))['value']['trim'](),_0x3ac82d=document[_0x16f42d(0x19f)](_0x16f42d(0x1ed))[_0x16f42d(0x17c)];if(!_0x22dc8b||!_0x2ff185||!_0x3ac82d){showNotification(_0x16f42d(0x141),'error');return;}if(_0x22dc8b[_0x16f42d(0x1b2)]<0x2){showNotification(_0x16f42d(0x165),_0x16f42d(0x1d9));return;}inscription[_0x16f42d(0x1aa)]=!![],inscription['textContent']=_0x16f42d(0x1e1);try{try{await signInWithEmailAndPassword(auth,_0x2ff185,_0x3ac82d),showNotification(_0x16f42d(0x18e),'info');}catch(_0x1ded69){if(_0x1ded69[_0x16f42d(0x18c)]==='auth/user-not-found'||_0x1ded69[_0x16f42d(0x18c)]===_0x16f42d(0x145))await createUserWithEmailAndPassword(auth,_0x2ff185,_0x3ac82d),showNotification(_0x16f42d(0x152),_0x16f42d(0x19b)),await setDoc(doc(db,_0x16f42d(0x15b),_0x2ff185),{'nom':_0x22dc8b,'email':_0x2ff185,'dateCreation':Date[_0x16f42d(0x173)]()});else throw _0x1ded69;}currentUser={'nom':_0x22dc8b,'email':_0x2ff185},document[_0x16f42d(0x19f)](_0x16f42d(0x178))[_0x16f42d(0x1e3)]=_0x22dc8b,connexionDiv[_0x16f42d(0x13e)][_0x16f42d(0x177)]=_0x16f42d(0x16c),letousDiv[_0x16f42d(0x13e)][_0x16f42d(0x177)]=_0x16f42d(0x192),manageConnectedUsers(),loadMessages();}catch(_0x1caa7d){console[_0x16f42d(0x1d9)]('Erreur:',_0x1caa7d);let _0x2a097a=_0x16f42d(0x140);if(_0x1caa7d[_0x16f42d(0x18c)]===_0x16f42d(0x15f))_0x2a097a=_0x16f42d(0x197);else{if(_0x1caa7d['code']===_0x16f42d(0x169))_0x2a097a=_0x16f42d(0x18a);else _0x1caa7d['code']===_0x16f42d(0x16f)&&(_0x2a097a=_0x16f42d(0x1c9));}showNotification(_0x2a097a,'error');}finally{inscription[_0x16f42d(0x1aa)]=![],inscription['innerHTML']='<i\x20class=\x22fas\x20fa-sign-in-alt\x22></i>\x20Se\x20connecter';}}),document[_0xf03db2(0x19f)](_0xf03db2(0x179))[_0xf03db2(0x1bd)](_0xf03db2(0x13d),async function(){const _0x409bca=_0xf03db2;try{currentUser&&await updateDoc(doc(db,_0x409bca(0x1ab),currentUser[_0x409bca(0x1d7)]),{'isOnline':![],'lastSeen':Date[_0x409bca(0x173)]()}),await auth[_0x409bca(0x1c2)](),showNotification(_0x409bca(0x1e4),_0x409bca(0x19b)),connexionDiv['style']['display']=_0x409bca(0x192),letousDiv[_0x409bca(0x13e)][_0x409bca(0x177)]=_0x409bca(0x16c),zone_chat[_0x409bca(0x180)]='',currentUser=null,currentPrivateChat=null,connectedUsers[_0x409bca(0x199)](),privateChatNotifications['clear']();}catch(_0x596153){console[_0x409bca(0x1d9)](_0x409bca(0x158),_0x596153),showNotification(_0x409bca(0x149),_0x409bca(0x1d9));}}),document[_0xf03db2(0x19f)](_0xf03db2(0x156))['addEventListener'](_0xf03db2(0x13d),function(){const _0x151e70=_0xf03db2;isAnonymous=!isAnonymous;const _0x40b751=this;isAnonymous?(_0x40b751[_0x151e70(0x180)]=_0x151e70(0x1c0),_0x40b751[_0x151e70(0x13e)][_0x151e70(0x1d6)]=_0x151e70(0x17f),showNotification(_0x151e70(0x14a),_0x151e70(0x19b))):(_0x40b751[_0x151e70(0x180)]=_0x151e70(0x1c7),_0x40b751[_0x151e70(0x13e)][_0x151e70(0x1d6)]=_0x151e70(0x1b0),showNotification(_0x151e70(0x15c),'info'));}),document['getElementById'](_0xf03db2(0x17a))[_0xf03db2(0x1bd)]('click',()=>{const _0x37ee61=_0xf03db2;document[_0x37ee61(0x19f)](_0x37ee61(0x1b7))['click']();}),document[_0xf03db2(0x19f)](_0xf03db2(0x1b7))[_0xf03db2(0x1bd)]('change',function(_0x32586b){const _0x317e9f=_0xf03db2,_0xecfb5f=_0x32586b[_0x317e9f(0x1a1)][_0x317e9f(0x1b5)][0x0];if(!_0xecfb5f)return;const _0x362daf=new FileReader();_0x362daf[_0x317e9f(0x148)]=function(){const _0x310781=_0x317e9f;document[_0x310781(0x19f)](_0x310781(0x15d))[_0x310781(0x1d8)]=_0x362daf[_0x310781(0x1d1)],document['getElementById'](_0x310781(0x15d))[_0x310781(0x13e)]['display']=_0x310781(0x192),showNotification(_0x310781(0x1e6),'info');},_0x362daf[_0x317e9f(0x13c)](_0xecfb5f);}),document[_0xf03db2(0x19f)]('emoji')[_0xf03db2(0x1bd)](_0xf03db2(0x13d),function(){const _0x4b62d0=_0xf03db2,_0x2a0594=document[_0x4b62d0(0x19f)]('emo');_0x2a0594[_0x4b62d0(0x13e)][_0x4b62d0(0x177)]=_0x2a0594[_0x4b62d0(0x13e)][_0x4b62d0(0x177)]===_0x4b62d0(0x192)?_0x4b62d0(0x16c):_0x4b62d0(0x192);}),document[_0xf03db2(0x19f)]('emo')[_0xf03db2(0x185)](_0xf03db2(0x157))[_0xf03db2(0x1a3)](_0x5a84ea=>{const _0x12ab70=_0xf03db2;_0x5a84ea['addEventListener'](_0x12ab70(0x13d),function(){const _0xf22ec3=_0x12ab70;message[_0xf22ec3(0x17c)]+=_0x5a84ea[_0xf22ec3(0x1e3)],document['getElementById'](_0xf22ec3(0x191))[_0xf22ec3(0x13e)][_0xf22ec3(0x177)]=_0xf22ec3(0x16c),message['focus']();});}),document[_0xf03db2(0x19f)](_0xf03db2(0x1a0))[_0xf03db2(0x1bd)](_0xf03db2(0x13d),envoyerMessage),message[_0xf03db2(0x1bd)](_0xf03db2(0x18b),function(_0x371f1b){const _0x3a1ec4=_0xf03db2;_0x371f1b[_0x3a1ec4(0x150)]==='Enter'&&!_0x371f1b[_0x3a1ec4(0x1e8)]&&(_0x371f1b[_0x3a1ec4(0x1d5)](),envoyerMessage());}),document[_0xf03db2(0x1bd)](_0xf03db2(0x13d),function(_0x76e1f9){const _0x3f801e=_0xf03db2;!_0x76e1f9[_0x3f801e(0x1a1)]['closest'](_0x3f801e(0x1a4))&&!_0x76e1f9[_0x3f801e(0x1a1)][_0x3f801e(0x1c3)](_0x3f801e(0x168))&&(document[_0x3f801e(0x19f)](_0x3f801e(0x191))['style']['display']=_0x3f801e(0x16c));}),setTimeout(()=>{const _0x291b0c=_0xf03db2;showNotification(_0x291b0c(0x1c5),_0x291b0c(0x19b));},0x3e8),setTimeout(()=>{const _0x388fe4=_0xf03db2;currentUser&&!currentPrivateChat&&addSystemMessage(_0x388fe4(0x143));},0xbb8);
 
     </script>
 </body>
