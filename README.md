@@ -54,7 +54,6 @@
                     </button>
                 </div>
             </div>
-
             <div class="liste">
                 <strong>Utilisateurs connectés <span id="userCount">(0)</span></strong>
                 <div id="usersList">
