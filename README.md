@@ -1980,9 +1980,9 @@
                     </p>
 
                     <div class="product-grid">
-                          <div class="product-card" data-name="Sneakers Nike Air Max" data-price="159000">
+                          <div class="product-card" data-name="Adidas Nike Air Max" data-price="6000">
                              <div class="product-image" style="height:300px;width: 100%;">
-  <img src="https://i.postimg.cc/g009F9yB/IMG-20250831-WA0011.jpg" width="450px" height="300px"  alt="">
+                              <img src="https://i.postimg.cc/g009F9yB/IMG-20250831-WA0011.jpg" width="450px" height="300px"  alt="">
                                 <i class="fas fa-shoe-prints"></i>
                             </div>
                             <div class="product-info">
@@ -2005,7 +2005,7 @@
                             </button>
                         </div>
 
-                        <div class="product-card" data-name="Sneakers Nike Air Max" data-price="159000">
+                        <div class="product-card" data-name="Adidas Nike Air Max" data-price="6000">
                              <div class="product-image" style="height:300px;width: 100%;">
                             <img src="https://i.postimg.cc/ZnGsC2dZ/IMG-20250822-WA0029.jpg" width="450px" height="300px"  alt="">
                                 <i class="fas fa-shoe-prints"></i>
@@ -2030,7 +2030,7 @@
                             </button>
                         </div>
 
-                        <div class="product-card" data-name="Sneakers Nike Air Max" data-price="159000">
+                        <div class="product-card" data-name="Adidas Nike Air Max" data-price="6000">
                              <div class="product-image" style="height:300px;width: 100%;">
                             <img src="https://i.postimg.cc/R01m912N/IMG-20250831-WA0010.jpg" width="450px" height="300px"  alt="">
                                 <i class="fas fa-shoe-prints"></i>
@@ -2054,7 +2054,6 @@
                                 <i class="fas fa-cart-plus"></i> Ajouter
                             </button>
                         </div>
-                    </div>
 
                 <!-- Tech & Gaming -->
                 <div class="category-card animate-in">
@@ -2066,9 +2065,10 @@
                     </p>
 
                     <div class="product-grid">
-                        <div class="product-card" data-name="iPhone 15 Pro Max" data-price="1299000">
+                        <div class="product-card" data-name="Adidas Nike Air Max" data-price="6000">
                             <div class="product-badge">Nouveau</div>
-                            <div class="product-image" style="height:300px;width: 100%;" ><img src="https://i.postimg.cc/90CrCFxj/IMG-20250831-WA0014.jpg"width="450px" height="300px" alt="">
+                            <div class="product-image" style="height:300px;width: 100%;" >
+                                <img src="https://i.postimg.cc/90CrCFxj/IMG-20250831-WA0014.jpg"width="450px" height="300px" alt="">
                             </div>
                             <div class="product-info">
                                 <div class="product-name">Adidas Nike Air Max</div>
@@ -2090,7 +2090,7 @@
                             </button>
                         </div>
                     </div>
-                        <div class="product-card" data-name="PlayStation 5 Pro" data-price="499000">
+                        <div class="product-card" data-name="Chaussure durable" data-price="6000">
                             <div class="product-badge">Gaming</div>
                             <div class="product-image" style="height:300px;width: 100%;"> <img src="https://i.postimg.cc/85qmHWPm/IMG-20250831-WA0013.jpg"  width="450px" height="300px" alt="">
                                 <i class="fas fa-gamepad"></i>
@@ -2115,7 +2115,7 @@
                             </button>
                         </div>
 
-                        <div class="product-card" data-name="MacBook Air M3" data-price="1499000">
+                        <div class="product-card" data-name="Chaussures dernier crie" data-price="8000">
                              <div class="product-image" style="height:300px;width: 100%;">
                        <img src="https://i.postimg.cc/MGq7XdMR/IMG-20250831-WA0008.jpg" width="450px" height="300px" alt="">
                             </div>
@@ -2324,34 +2324,34 @@
 
         // Base de données des produits
         const products = {
-            "iPhone 15 Pro Max": {
-                price: 1299000,
+            "Adidas Nike Air Max": {
+                price: 6000,
                 category: "Tech",
-                image: "assets/images/IMG-20250831-WA0008.jpg",
-                description: "Smartphone avec puce A17 Pro et caméra 48MP"
+                image: "https://i.postimg.cc/NfZm9D7q/IMG-20250831-WA0011.jpg",
+                description: "Chaussures premium avec technologie Air Max"
             },
-            "MacBook Air M3": {
-                price: 1499000,
-                category: "Tech",
-                image: "https://images.unsplash.com/photo-1541807084-5c52b6b3adef?w=400&h=300&fit=crop",
-                description: "Ultra-portable avec puce M3, écran Liquid Retina"
+             "Chaussures dernier crie": {
+                price: 6000,
+                category: "Beauté",
+                image: "https://i.postimg.cc/ZnGsC2dZ/IMG-20250822-WA0029.jpg",
+                description: "Ultra-portable avec languette, tissu solide Retina"
             },
             "PlayStation 5 Pro": {
                 price: 499000,
                 category: "Gaming",
-                image: "https://images.unsplash.com/photo-1606144042614-b2417e99c4e3?w=400&h=300&fit=crop",
+                image: "https://i.postimg.cc/R01m912N/IMG-20250831-WA0010.jpg",
                 description: "Console nouvelle génération avec 2 manettes"
             },
-            "Robe Designer Été": {
-                price: 89000,
+            "Adidas Nike Air Max": {
+                price: 6000,
                 category: "Mode",
-                image: "https://images.unsplash.com/photo-1515372039744-b8f02a3ae446?w=400&h=300&fit=crop",
-                description: "Robe légère en soie, coupe élégante, parfaite pour l'été"
+                image: "https://i.postimg.cc/90CrCFxj/IMG-20250831-WA0014.jpg",
+                description: "Chaussures premium avec technologie Air Max"
             },
             "Sneakers Nike Air Max": {
-                price: 159000,
+                price: 6000,
                 category: "Mode",
-                image: "https://images.unsplash.com/photo-1549298916-b41d501d3772?w=400&h=300&fit=crop",
+                image: "https://i.postimg.cc/85qmHWPm/IMG-20250831-WA0013.jpg",
                 description: "Chaussures premium avec technologie Air Max"
             },
             "Chaussures dernier crie": {
@@ -3105,3 +3105,5 @@ mobileNav.style.display = mobileNav.style.display === "block" ? "none" : "block"
         };
     </script>
 </body>
+
+</html>
