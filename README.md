@@ -1,4 +1,4 @@
-<html lang="fr">
+
 
 <head>
     <meta charset="UTF-8">
@@ -1981,7 +1981,7 @@
 
                     <div class="product-grid">
                           <div class="product-card" data-name="Sneakers Nike Air Max" data-price="159000">
-                            <div class="product-image"style="height:300px;width: 100%;"> <img src="assets/images/IMG-20250831-WA0011.jpg" width="450px" height="550px"  alt="">
+                            <div class="product-image"style="height:300px;width: 100%;"> <img src="https://i.postimg.cc/g009F9yB/IMG-20250831-WA0011.jpg" width="450px" height="550px"  alt="">
                                 <i class="fas fa-shoe-prints"></i>
                             </div>
                             <div class="product-info">
@@ -2005,7 +2005,7 @@
                         </div>
 
                         <div class="product-card" data-name="Sneakers Nike Air Max" data-price="159000">
-                            <div class="product-image"style="height:300px;width: 100%;"> <img src="assets/images/IMG-20250831-WA0010.jpg" width="450px" height="550px"  alt="">
+                            <div class="product-image"style="height:300px;width: 100%;"> <img src="https://i.postimg.cc/ZnGsC2dZ/IMG-20250822-WA0029.jpg" width="450px" height="550px"  alt="">
                                 <i class="fas fa-shoe-prints"></i>
                             </div>
                             <div class="product-info">
@@ -2029,7 +2029,7 @@
                         </div>
 
                         <div class="product-card" data-name="Sneakers Nike Air Max" data-price="159000">
-                            <div class="product-image"style="height:300px;width: 100%;"> <img src="assets/images/IMG-20250831-WA0013.jpg" width="450px" height="550px"  alt="">
+                            <div class="product-image"style="height:300px;width: 100%;"> <img src="https://i.postimg.cc/R01m912N/IMG-20250831-WA0010.jpg" width="450px" height="550px"  alt="">
                                 <i class="fas fa-shoe-prints"></i>
                             </div>
                             <div class="product-info">
@@ -2066,7 +2066,7 @@
                     <div class="product-grid">
                         <div class="product-card" data-name="iPhone 15 Pro Max" data-price="1299000">
                             <div class="product-badge">Nouveau</div>
-                            <div class="product-image" style="height:300px;width: 100%;" ><img src="assets/images/IMG-20250822-WA0027.jpg"width="450px" height="550px" alt="">
+                            <div class="product-image" style="height:300px;width: 100%;" ><img src="https://i.postimg.cc/90CrCFxj/IMG-20250831-WA0014.jpg"width="450px" height="550px" alt="">
                             </div>
                             <div class="product-info">
                                 <div class="product-name">Adidas Nike Air Max</div>
@@ -2090,7 +2090,7 @@
 
                         <div class="product-card" data-name="PlayStation 5 Pro" data-price="499000">
                             <div class="product-badge">Gaming</div>
-                            <div class="product-image" style="height:300px;width: 100%;"> <img src="assets/images/IMG-20250831-WA0014.jpg"  width="450px" height="550px" alt="">
+                            <div class="product-image" style="height:300px;width: 100%;"> <img src="https://i.postimg.cc/85qmHWPm/IMG-20250831-WA0013.jpg"  width="450px" height="550px" alt="">
                                 <i class="fas fa-gamepad"></i>
                             </div>
                             <div class="product-info">
@@ -2114,7 +2114,7 @@
                         </div>
 
                         <div class="product-card" data-name="MacBook Air M3" data-price="1499000">
-                            <div class="product-image"style="height:300px;width: 100%;"><img src="assets/images/IMG-20250831-WA0008.jpg" width="450px" height="550px" alt="">
+                            <div class="product-image"style="height:300px;width: 100%;"><img src="https://i.postimg.cc/MGq7XdMR/IMG-20250831-WA0008.jpg" width="450px" height="550px" alt="">
                             </div>
                             <div class="product-info">
                                 <div class="product-name">Chaussures dernier crie</div>
