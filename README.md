@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+<html lang="fr">
 
 <head>
     <meta charset="UTF-8">
@@ -2089,7 +2089,7 @@
                                 <i class="fas fa-cart-plus"></i> Ajouter
                             </button>
                         </div>
-
+                    </div>
                         <div class="product-card" data-name="PlayStation 5 Pro" data-price="499000">
                             <div class="product-badge">Gaming</div>
                             <div class="product-image" style="height:300px;width: 100%;"> <img src="https://i.postimg.cc/85qmHWPm/IMG-20250831-WA0013.jpg"  width="450px" height="300px" alt="">
@@ -2138,6 +2138,8 @@
                                 <i class="fas fa-cart-plus"></i> Ajouter
                             </button>
                         </div>
+                    </div>
+                </div>
             </div>
 
             <!-- Newsletter Section -->
@@ -2155,6 +2157,7 @@
                     </button>
                 </form>
             </div>
+                </div>
     </main>
 
     <!-- Icône du panier flottant -->
@@ -3102,5 +3105,3 @@ mobileNav.style.display = mobileNav.style.display === "block" ? "none" : "block"
         };
     </script>
 </body>
-
-</html>
