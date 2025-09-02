@@ -1,5 +1,4 @@
 <!DOCTYPE html>
-<html lang="fr">
 
 <head>
     <meta charset="UTF-8">
@@ -1982,6 +1981,7 @@
 
                     <div class="product-grid">
                           <div class="product-card" data-name="Sneakers Nike Air Max" data-price="159000">
+                             <div class="product-image" style="height:300px;width: 100%;">
   <img src="https://i.postimg.cc/g009F9yB/IMG-20250831-WA0011.jpg" width="450px" height="300px"  alt="">
                                 <i class="fas fa-shoe-prints"></i>
                             </div>
@@ -2006,6 +2006,7 @@
                         </div>
 
                         <div class="product-card" data-name="Sneakers Nike Air Max" data-price="159000">
+                             <div class="product-image" style="height:300px;width: 100%;">
                             <img src="https://i.postimg.cc/ZnGsC2dZ/IMG-20250822-WA0029.jpg" width="450px" height="300px"  alt="">
                                 <i class="fas fa-shoe-prints"></i>
                             </div>
@@ -2030,6 +2031,7 @@
                         </div>
 
                         <div class="product-card" data-name="Sneakers Nike Air Max" data-price="159000">
+                             <div class="product-image" style="height:300px;width: 100%;">
                             <img src="https://i.postimg.cc/R01m912N/IMG-20250831-WA0010.jpg" width="450px" height="300px"  alt="">
                                 <i class="fas fa-shoe-prints"></i>
                             </div>
@@ -2114,6 +2116,7 @@
                         </div>
 
                         <div class="product-card" data-name="MacBook Air M3" data-price="1499000">
+                             <div class="product-image" style="height:300px;width: 100%;">
                        <img src="https://i.postimg.cc/MGq7XdMR/IMG-20250831-WA0008.jpg" width="450px" height="300px" alt="">
                             </div>
                             <div class="product-info">
@@ -2348,11 +2351,11 @@
                 image: "https://images.unsplash.com/photo-1549298916-b41d501d3772?w=400&h=300&fit=crop",
                 description: "Chaussures premium avec technologie Air Max"
             },
-            "Kit Maquillage Professionnel": {
-                price: 149000,
+            "Chaussures dernier crie": {
+                price: 8000,
                 category: "Beauté",
-                image: "https://images.unsplash.com/photo-1596462502278-27bfdc403348?w=400&h=300&fit=crop",
-                description: "Palette complète avec pinceaux premium, longue tenue"
+                image: "https://i.postimg.cc/MGq7XdMR/IMG-20250831-WA0008.jpg",
+                description: "Ultra-portable avec languette, tissu solide Retina"
             }
         };
 
