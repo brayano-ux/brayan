@@ -408,10 +408,7 @@
         .animated {
             animation: fadeIn 0.3s ease-in;
         }
-    </style>
-</head>
- <style>
-        * {
+            * {
             margin: 0;
             padding: 0;
             box-sizing: border-box;
